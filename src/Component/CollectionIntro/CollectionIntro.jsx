@@ -40,7 +40,7 @@ const CollectionIntro = () => {
         {/* Overlaid image */}
         <div className="intro-image" onClick={handleClick}>
           <OptimizedImage
-            src="/wish_ginne.webp"
+            src="/wish_genie.png"
             alt="New collection with decorative pillows and throw"
           />
 
