@@ -92,31 +92,31 @@
 
 @media screen and (max-width: 480px) {
 
-    .insta-feed-gallery{
+    .insta-feed-gallery {
         max-height: 120px;
         max-width: 330px;
     }
 
-    .insta-feed-container{
+    .insta-feed-container {
         padding-top: 20px;
     }
 
-    .insta-feed-title{
+    .insta-feed-title {
         font-size: 16px;
         margin-bottom: 20px;
     }
 
-    .gallery-image{
+    .gallery-image {
         width: 85px;
         height: 100%;
     }
 
-    .gallery-image img{
+    .gallery-image img {
         width: 100%;
         height: auto;
     }
 
-    .image5{
+    .image5 {
         z-index: 2;
     }
 }
