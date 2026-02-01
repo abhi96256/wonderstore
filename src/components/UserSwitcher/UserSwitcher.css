@@ -1,0 +1,63 @@
+.user-switcher {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-icon {
+  color: #333;
+  font-size: 16px;
+}
+
+.user-email {
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.user-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: #f0f0f0;
+  color: #333;
+}
+
+.user-btn.active {
+  background: linear-gradient(120deg, #8f2fff 0%, #ff5e62 100%);
+  color: white;
+}
+
+.user-btn:hover:not(.active) {
+  background: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .user-switcher {
+    top: auto;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    padding: 6px 12px;
+  }
+
+  .user-email {
+    font-size: 12px;
+  }
+} 

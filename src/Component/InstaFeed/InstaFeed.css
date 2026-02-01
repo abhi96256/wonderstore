@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+.insta-feed-container {
+    padding: 2%;
+    margin: 0 auto;
+    max-width: 1200px;
+    overflow: hidden;
+}
+
+.insta-feed-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 50px;
+    letter-spacing: 1.5px;
+    color: #1D1D1D;
+}
+
+.insta-feed-gallery {
+    position: relative;
+    height: 350px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.gallery-image {
+    position: absolute;
+    border-radius: 20px;
+    overflow: hidden;
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+    transition: transform 0.3s ease;
+}
+
+.gallery-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+}
+
+.gallery-image:hover {
+    transform: translateY(-10px) scale(1.02);
+    z-index: 10;
+}
+
+/* Positioning and sizing for each image */
+.image1 {
+    width: 220px;
+    height: 280px;
+    left: 5%;
+    top: 10px;
+    transform: rotate(-2deg);
+    z-index: 1;
+}
+
+.image2 {
+    width: 220px;
+    height: 280px;
+    left: 20%;
+    top: 25px;
+    transform: rotate(2deg);
+    z-index: 2;
+}
+
+.image3 {
+    width: 220px;
+    height: 280px;
+    left: 35%;
+    top: 0;
+    transform: rotate(-1deg);
+    z-index: 4;
+}
+
+.image4 {
+    width: 220px;
+    height: 280px;
+    left: 50%;
+    top: 15px;
+    transform: rotate(3deg);
+    z-index: 3;
+}
+
+.image5 {
+    width: 220px;
+    height: 280px;
+    left: 65%;
+    top: 5px;
+    transform: rotate(-2deg);
+    z-index: 4;
+}
+
+@media screen and (max-width: 480px) {
+
+    .insta-feed-gallery{
+        max-height: 120px;
+        max-width: 330px;
+    }
+
+    .insta-feed-container{
+        padding-top: 20px;
+    }
+
+    .insta-feed-title{
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .gallery-image{
+        width: 85px;
+        height: 100%;
+    }
+
+    .gallery-image img{
+        width: 100%;
+        height: auto;
+    }
+
+    .image5{
+        z-index: 2;
+    }
+}

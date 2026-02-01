@@ -1,0 +1,80 @@
+.featured-section {
+  padding: 60px 40px;
+  background-color: #FAFAFC;
+  text-align: center;
+  /* No change here, maintaining current padding and background */
+}
+
+.featured-heading {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #222;
+  text-transform: uppercase;
+  /* Added for a modern look */
+  letter-spacing: 1px;
+  /* Adds spacing for better legibility */
+  font-weight: 700;
+  /* Make the heading slightly bolder */
+}
+
+.featured-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 0 15px;
+  /* Added padding for better spacing */
+}
+
+.featured-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+  padding-top: 80px;
+  /* margin-left: 500px; */
+}
+
+.featured-img:hover {
+  transform: scale(1.03);
+}
+
+/* Magic Orb Loader Styles */
+.magic-orb-loader {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.magic-orb {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at 30% 30%, #fffbe7 60%, #f7c873 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 30px 10px #f7c87388, 0 0 0 4px #fffbe7;
+  animation: orb-pulse 1.2s infinite alternate;
+  position: absolute;
+}
+@keyframes orb-pulse {
+  0% { box-shadow: 0 0 30px 10px #f7c87388, 0 0 0 4px #fffbe7; }
+  100% { box-shadow: 0 0 50px 20px #f7c873cc, 0 0 0 8px #fffbe7; }
+}
+.magic-orb-sparkle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #fffbe7;
+  border-radius: 50%;
+  top: 10px;
+  left: 55px;
+  box-shadow: 0 0 8px 2px #fffbe7;
+  animation: sparkle-move 1.2s infinite linear;
+}
+@keyframes sparkle-move {
+  0% { transform: scale(1) translateY(0); opacity: 1; }
+  50% { transform: scale(1.3) translateY(-10px); opacity: 0.7; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}

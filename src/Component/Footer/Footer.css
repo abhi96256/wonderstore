@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+@font-face {
+    font-family: 'Carmine';
+    src: url('/public/fonts/Carmine.ttf') format('truetype'),
+        url('/public/fonts/Carmine.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.footer {
+    margin-top: 60px;
+    padding: 40px 20px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 20px;
+    border: 1px solid #eaeaea;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.footer-heading {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.footer-links {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-link {
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #000;
+}
+
+.copyright {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* Logo Section */
+.footer-logo-section {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    margin-bottom: 20px;
+}
+
+.logo-text {
+    font-size: 36px;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+.social-link.facebook:hover {
+    background: #1877f2;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(24, 119, 242, 0.2);
+}
+
+.social-link.instagram:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(225, 48, 108, 0.2);
+}
+
+/* .social-link.pinterest {
+    background-color: #E60023;
+    transition: all 0.3s ease;
+} */
+
+.social-link.pinterest:hover {
+    background-color: #E60023;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(225, 48, 108, 0.2);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-section {
+        width: 100%;
+        padding: 0;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .social-links {
+        margin-top: 20px;
+    }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 480px) {
+    .footer {
+        margin-top: 30px;
+        padding: 20px 15px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .footer-section {
+        width: 100%;
+        padding: 0;
+    }
+
+    .footer-heading {
+        font-size: 11px;
+        margin-bottom: 10px;
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+    }
+
+    .footer-links {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .footer-link {
+        font-size: 9px;
+        padding: 3px 0;
+        line-height: 1.3;
+    }
+
+    .copyright {
+        margin-top: 5px;
+        font-size: 9px;
+        line-height: 1.3;
+        color: #666;
+    }
+
+    .footer-logo-section {
+        order: -1;
+        margin-bottom: 10px;
+    }
+
+    .footer-logo {
+        margin-bottom: 10px;
+    }
+
+    .footer-logo img {
+        width: 45px !important;
+    }
+
+    .social-links {
+        margin-top: 10px;
+        gap: 12px;
+    }
+
+    .social-link {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+    }
+
+    .social-link svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Combine sections for more compact layout */
+    /* .footer-section:first-child {
+        margin-bottom: 15px;
+    } */
+
+    .footer-section:last-child {
+        margin-top: 0;
+    }
+
+    /* Reduce overall spacing */
+    .footer-content > * {
+        margin: 0;
+    }
+}

@@ -1,0 +1,122 @@
+.login-prompt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.login-prompt-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+  z-index: 100000;
+}
+
+.login-prompt-container {
+  position: relative;
+  background: white;
+  padding: 40px;
+  text-align: center;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.login-prompt-icon {
+  font-size: 3rem;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.login-prompt-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.login-prompt-message {
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.login-prompt-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.login-prompt-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.login-prompt-button.primary {
+  background: #000000;
+  color: white;
+}
+
+.login-prompt-button.primary:hover {
+  background: #333333;
+  transform: translateY(-2px);
+}
+
+.login-prompt-link {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.login-prompt-link:hover {
+  color: #000000;
+}
+
+.close-prompt-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+.close-prompt-btn:hover {
+  color: #000000;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

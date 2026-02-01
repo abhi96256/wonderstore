@@ -1,0 +1,226 @@
+.order-tracking-page {
+  font-family: 'Montserrat', sans-serif;
+  background: #fafaff;
+  min-height: 100vh;
+  padding: 0 0 40px 0;
+  margin-top: 10%;
+}
+
+.order-tracking-hero {
+  background: linear-gradient(90deg, #f3e8ff 0%, #e0e7ff 100%);
+  padding: 48px 0 32px 0;
+  text-align: center;
+}
+.order-tracking-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 12px;
+}
+.order-tracking-hero p {
+  color: #444;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.order-tracking-content {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto 0 auto;
+  max-width: 900px;
+}
+
+.order-tracking-form {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(124,58,237,0.07);
+  padding: 32px 28px;
+  min-width: 320px;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-group label {
+  font-weight: 500;
+  color: #444;
+}
+.form-group input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f9fafb;
+}
+.order-tracking-btn {
+  background: linear-gradient(90deg, black 0%, black 100%);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  cursor: pointer;  
+  transition: background 0.2s;
+}
+.order-tracking-btn:hover {
+  background: linear-gradient(90deg, black 0%, black 100%);
+}
+
+.order-tracking-details {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(124,58,237,0.07);
+  padding: 32px 28px;
+  min-width: 320px;
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.order-status-tracker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  overflow-x: auto;
+}
+.status-step {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+  background-color: black;
+}
+.status-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color:white;
+ 
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  z-index: 2;
+  transition: background 0.2s, color 0.2s;
+}
+.status-step.active .status-circle {
+  background: black;
+  color: #fff;
+}
+.status-step.done .status-circle {
+  background: black;
+  color: #fff;
+}
+.status-label {
+  margin-left: 10px;
+  margin-right: 0;
+  font-size: 1rem;
+  color: white;
+  font-weight: 500;
+  min-width: 90px;
+  text-align: center;
+}
+
+
+
+.order-summary-block {
+  margin-bottom: 18px;
+}
+.order-summary-block h2 {
+  color: black;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+.order-info {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 12px;
+}
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.order-item img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+.item-name {
+  font-weight: 600;
+  color: #222;
+}
+.item-meta {
+  font-size: 0.95rem;
+  color: black;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .order-tracking-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .order-tracking-form, .order-tracking-details {
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .order-tracking-page {
+    padding-top: 15%;
+  }
+  
+  .order-tracking-hero {
+    padding: 24px 0 16px 0;
+  }
+  
+  .order-tracking-hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .order-tracking-hero p {
+    font-size: 1rem;
+  }
+  
+  .order-tracking-content {
+    padding: 0 12px;
+  }
+  
+  .order-tracking-form, .order-tracking-details {
+    padding: 20px 16px;
+  }
+} 

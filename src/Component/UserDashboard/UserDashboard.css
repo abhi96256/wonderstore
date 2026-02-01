@@ -1,0 +1,415 @@
+.user-dashboard {
+font-family: 'Montserrat', sans-serif;
+text-decoration: none;
+color: #333;
+font-size: 14px;
+font-weight: 500;
+position: relative;
+transition: color 0.3s ease;
+white-space: nowrap;
+position: relative;
+display: inline-block;
+
+}
+
+.dropdown-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.user-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+.user-btn:hover {
+  color: #666;
+}
+
+.dashboard-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  z-index: 1000;
+  overflow: hidden;
+  min-width: 250px;
+  max-width: 350px;
+}
+
+.dashboard-header {
+  padding: 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background: #e9ecef;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-avatar svg {
+  font-size: 20px;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-info h4,
+.profile-welcome {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word;
+  max-width: 260px;
+  font-size: 1rem;
+}
+
+.user-info p {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.dashboard-menu {
+  padding: 10px 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  gap: 10px;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #f8f9fa;
+}
+
+.menu-icon {
+  font-size: 16px;
+  color: #666;
+}
+
+.logout-btn {
+  color: #dc3545;
+}
+
+.logout-btn .menu-icon {
+  color: #dc3545;
+}
+
+/* Auth Buttons Styles */
+.auth-buttons {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.auth-btn {
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 20px;
+  background-color: #E91E63;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-btn:hover {
+  background-color: #D81B60;
+  color: white;
+}
+
+.login-icon {
+  font-size: 14px;
+  color: white;
+}
+
+.auth-btn::after {
+  display: none;
+}
+
+.login-btn {
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  padding: 0;
+  background: none;
+}
+
+.login-btn:hover {
+  color: #000;
+}
+
+.login-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+.login-btn:hover::after {
+  width: 100%;
+}
+
+.signup-btn:hover {
+  color: #000;
+}
+
+/* Login Dropdown Styles */
+.login-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.login-header {
+  margin-bottom: 20px;
+}
+
+.login-header h4 {
+  font-size: 18px;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.login-header p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+  word-wrap: break-word;
+  max-width: 100%;
+  overflow-wrap: break-word; /* ensure wrapping */
+  white-space: normal;       /* very important */
+}
+
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-link {
+  display: block;
+  padding: 10px;
+  background: black;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.login-link:hover {
+  background: black;
+}
+
+.signup-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #666;
+}
+
+.signup-prompt span {
+  font-size: 13px;
+  color: #666;
+}
+
+.signup-prompt a {
+  color: #E91E63;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.signup-prompt a:hover {
+  color: #C2185B;
+}
+
+@media (max-width: 768px) {
+  .dashboard-dropdown {
+    position: fixed;
+    top: 80px;
+    left: 16px;
+    right: 16px;
+    bottom: auto;
+    width: auto;
+    max-width: none;
+    z-index: 1001;
+  }
+  
+  .login-dropdown {
+    position: fixed;
+    top: 80px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    max-width: none;
+    z-index: 1001;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .auth-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+} 
+
+/* Admin Styles */
+.admin-badge {
+  display: inline-block;
+  background-color: #ff6b6b;
+  color: white;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-top: 5px;
+  margin-right: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.admin-menu-item {
+  background-color: #f8f0ff;
+  border-left: 3px solid #9c27b0;
+}
+
+.admin-menu-item .menu-icon {
+  color: #9c27b0;
+}
+
+.admin-menu-item:hover {
+  background-color: #f0e6f6;
+}
+
+@media (max-width: 480px) {
+  .login-text{
+    display: none;
+  }
+
+  .dashboard-dropdown {
+    top: 70px;
+    left: 10px;
+    right: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .login-dropdown {
+    top: 70px;
+    left: 10px;
+    right: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .dashboard-header {
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .user-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .user-avatar svg {
+    font-size: 18px;
+  }
+
+  .user-info h4 {
+    font-size: 0.9rem;
+    max-width: none;
+  }
+
+  .user-info p {
+    font-size: 11px;
+  }
+
+  .dashboard-menu {
+    padding: 8px 0;
+  }
+
+  .menu-item {
+    padding: 12px 15px;
+    font-size: 14px;
+    gap: 12px;
+  }
+
+  .menu-item img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .menu-icon {
+    font-size: 15px;
+  }
+
+  .admin-badge {
+    font-size: 10px;
+    padding: 1px 6px;
+    margin-top: 3px;
+  }
+}

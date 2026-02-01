@@ -1,0 +1,350 @@
+.fashion-section {
+    padding: 20px 0;
+}
+
+.sectiontitle {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.fashion-showcase {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+
+.showcase-main-section {
+    width: 50%;
+    /* background-image: url('./Rectangle101.png'); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 25px;
+    padding: 40px 50px;
+    background-color: #9AD3C2;
+}
+
+.main-content {
+    max-width: 90%;
+}
+
+.showcase-main-title {
+    font-size: 56px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1;
+    color: #1D1D1D;
+}
+
+.main-subtitle {
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+    color: #1D1D1D;
+}
+
+.main-description {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #1D1D1D;
+}
+
+.shop-nowbtn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.arrow-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #1D1D1D;
+    border-radius: 50%;
+    color: white;
+}
+
+
+
+.showcase-side-item {
+    width: 50%;
+}
+
+.showcase-side-item img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.info-card-header span {
+    padding-right: 10px;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.info-card-content p:last-child {
+    padding: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    padding-bottom: 0px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    gap: 10px;
+    line-height: 1.5;
+}
+
+.info-card-content svg {
+    transform: rotate(-45deg);
+    cursor: pointer;
+}
+
+.showcase-side-image-container {
+    position: relative;
+}
+
+.showcase-side-image-overlay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.showcase-side-image-overlay svg {
+    transform: rotate(-45deg);
+    cursor: pointer;
+}
+
+.showcase-side-image-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.showcase-side-image-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 30px 20px;
+    position: relative;
+}
+
+.showcase-side-image-badge {
+    display: inline-block;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+    top: -10px;
+}
+
+.showcase-side-image-title {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #1D1D1D;
+}
+
+.showcase-side-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 50%;
+}
+
+.showcase-side-container img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.showcase-info-card {
+    border: 1px solid #C6C6C6;
+    position: relative;
+    top: -160px;
+    border-radius: 10px;
+    padding: 20px 10px;
+    background-color: white;
+    border-radius: 32px;
+}
+
+.info-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    padding-bottom: 20px;
+}
+
+.info-card-header img {
+    width: 50px;
+    height: auto;
+    border-radius: 0;
+}
+
+.info-card-content p {
+    margin: 5px 0;
+}
+
+.info-card-content p:first-child {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #1D1D1D;
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding-bottom: 20px;
+}
+
+
+@media screen and (max-width: 480px) {
+
+    .info-card-header{
+        padding-bottom: 10px;
+    }
+
+    .info-card-header img{
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .info-card-header span{
+        font-size: 10px;
+    }
+
+    .showcase-info-card{
+        padding: 10px 5px;
+        top: -60px;
+        border-radius: 10px;
+    }
+
+    .showcase-side-container img:first-child{
+        height: 130px;
+    }
+
+    .info-card-content p:first-child{
+        font-size: 10px;
+        padding-bottom: 5px;
+        border-bottom: none;
+    }
+
+    .info-card-content p:last-child{
+        display: none;
+    }
+
+    .fashion-showcase{
+        padding: 10px;
+        height: 210px;
+    }
+
+    .sectiontitle{
+        margin-bottom: 0px;
+        font-size: 1rem;
+    }
+
+    .showcase-main-title{
+        font-size: 18px;
+    }
+    
+    .showcase-main-section{
+        padding: 5px 10px;
+        height: 200px;
+        padding-top: 30px;
+    }
+
+    .main-subtitle{
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .main-description{
+        font-size: 10px;
+        margin-bottom: 0px;
+    }
+
+    .main-content{
+        max-width: 100%;
+    }
+
+    .shop-nowbtn{
+        font-size: 12px;
+        justify-content: flex-end;
+        gap: 0px;
+        margin-top: 15px;
+    }
+
+    .mobile-hidden {
+        display: none;
+    }
+
+    .arrow-icon{
+        width: 20px;
+        height: 20px;
+    }
+
+    .arrow-icon svg{
+        width: 10px;
+        height: 10px;
+    }
+
+    .showcase-side-item {
+        width: 100%;
+    }
+
+    .showcase-side-image-overlay {
+        width: 25px;
+        height: 25px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .showcase-side-image-overlay svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .showcase-side-image-bottom {
+        padding: 5px;
+        bottom: 6px;
+    }
+
+    .showcase-side-image-card {
+        padding: 15px 5px;
+        border-radius: 10px;
+    }
+
+    .showcase-side-image-badge {
+        font-size: 6px;
+        padding: 4px 8px;
+        margin-bottom: 0px;
+        border-radius: 10px;
+    }
+
+    .showcase-side-image-title {
+        font-size: 7px;
+    }
+}

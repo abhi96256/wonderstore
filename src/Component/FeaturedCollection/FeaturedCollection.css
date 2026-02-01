@@ -1,0 +1,492 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes cardTransition {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%) rotateY(45deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotateY(0);
+    }
+}
+
+.featured-collection {
+    padding: 5rem 0;
+    max-width: 1440px;
+    margin: 0 auto;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.collection-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    letter-spacing: 0.15em;
+    color: #222;
+}
+
+.collection-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.carousel-control {
+    position: absolute;
+    right: 5%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.carousel-control:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 2rem;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background-color: #222;
+    transform: scale(1.2);
+}
+
+.card-carousel {
+    position: relative;
+    height: 460px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+    perspective: 1500px;
+    transform-style: preserve-3d;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.card {
+    position: absolute;
+    width: 220px;
+    height: 320px;
+    transition: all 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+/* Active card (center) */
+.card-active {
+    z-index: 10;
+    width: 320px;
+    height: 420px;
+    transform: translateZ(100px) scale(1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Left positioned cards with enhanced transitions */
+.card-left1 {
+    transform: translateX(-280px) translateZ(-50px) rotateY(10deg);
+    z-index: 9;
+    opacity: 0.9;
+    transition: all 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.card-left2 {
+    transform: translateX(-490px) translateZ(-100px) rotateY(20deg);
+    z-index: 8;
+    opacity: 0.7;
+    transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.card-left3 {
+    transform: translateX(-650px) translateZ(-150px) rotateY(30deg);
+    z-index: 7;
+    opacity: 0.5;
+    transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Right positioned cards with enhanced transitions */
+.card-right1 {
+    transform: translateX(280px) translateZ(-50px) rotateY(-10deg);
+    z-index: 9;
+    opacity: 0.9;
+    transition: all 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.card-right2 {
+    transform: translateX(490px) translateZ(-100px) rotateY(-20deg);
+    z-index: 8;
+    opacity: 0.7;
+    transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.card-right3 {
+    transform: translateX(650px) translateZ(-150px) rotateY(-30deg);
+    z-index: 7;
+    opacity: 0.5;
+    transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.card-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-1000px);
+    transition-delay: 0.1s;
+    pointer-events: none;
+}
+
+/* Animation for newly appearing cards */
+.card-entering {
+    animation: cardTransition 0.8s forwards;
+}
+
+.new-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #fff;
+    color: #222;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.price-badge {
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.price-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.start-from {
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 2px;
+}
+
+.price {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.shop-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #000;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.shop-btn:hover {
+    background-color: #333;
+    transform: translateY(-3px);
+}
+
+.shop-icon {
+    font-size: 1.2rem;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 480px) {
+    .featured-collection {
+        padding: 2rem 0;
+        overflow: hidden;
+    }
+
+    .collection-title {
+        font-size: 0.8rem;
+        margin-bottom: 0px;
+        letter-spacing: 0.1em;
+        padding: 0 1rem;
+    }
+
+    .collection-header {
+        margin-bottom: 0rem;
+        padding: 0 1rem;
+    }
+
+    .carousel-control {
+        right: 1rem;
+        padding: 6px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-control svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .card-carousel {
+        height: 350px;
+        padding: 0 1rem;
+        perspective: 800px;
+    }
+
+    .card {
+        width: 140px;
+        height: 200px;
+        border-radius: 8px;
+    }
+
+    /* Mobile card positioning - simplified for better mobile experience */
+    .card-active {
+        width: 180px;
+        height: 240px;
+        transform: translateZ(40px) scale(1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-left1 {
+        transform: translateX(-120px) translateZ(-20px) rotateY(15deg);
+        opacity: 0.8;
+    }
+
+    .card-left2 {
+        transform: translateX(-210px) translateZ(-40px) rotateY(25deg);
+        opacity: 0.6;
+    }
+
+    .card-left3 {
+        transform: translateX(-280px) translateZ(-60px) rotateY(35deg);
+        opacity: 0.4;
+    }
+
+    .card-right1 {
+        transform: translateX(120px) translateZ(-20px) rotateY(-15deg);
+        opacity: 0.8;
+    }
+
+    .card-right2 {
+        transform: translateX(210px) translateZ(-40px) rotateY(-25deg);
+        opacity: 0.6;
+    }
+
+    .card-right3 {
+        transform: translateX(280px) translateZ(-60px) rotateY(-35deg);
+        opacity: 0.4;
+    }
+
+    .new-label {
+        top: 10px;
+        left: 10px;
+        padding: 4px 8px;
+        font-size: 0.6rem;
+    }
+
+    .card-info {
+        padding: 0 15px 15px;
+    }
+
+    .price-badge {
+        padding: 8px 12px;
+        border-radius: 8px;
+    }
+
+    .price-info .start-from {
+        font-size: 0.6rem;
+        margin-bottom: 1px;
+    }
+
+    .price-info .price {
+        font-size: 0.8rem;
+    }
+
+    .shop-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .shop-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .carousel-indicators {
+        margin-top: 0rem;
+        gap: 6px;
+    }
+
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Loading and error states for mobile */
+    .loading,
+    .error,
+    .no-products {
+        padding: 2rem 1rem;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    /* Touch-friendly interactions */
+    .card {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .shop-btn:active {
+        transform: scale(0.95);
+    }
+
+    .indicator:active {
+        transform: scale(1.1);
+    }
+
+    /* Ensure smooth scrolling on mobile */
+    .featured-collection {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Additional breakpoint for very small screens */
+@media (max-width: 360px) {
+    .featured-collection {
+        padding: 1.5rem 0;
+    }
+
+    .collection-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-carousel {
+        height: 300px;
+    }
+
+    .card-active {
+        width: 200px;
+        height: 280px;
+    }
+
+    .card {
+        width: 150px;
+        height: 220px;
+    }
+
+    .card-left1 {
+        transform: translateX(-150px) translateZ(-25px) rotateY(15deg);
+    }
+
+    .card-left2 {
+        transform: translateX(-260px) translateZ(-50px) rotateY(25deg);
+    }
+
+    .card-right1 {
+        transform: translateX(150px) translateZ(-25px) rotateY(-15deg);
+    }
+
+    .card-right2 {
+        transform: translateX(260px) translateZ(-50px) rotateY(-25deg);
+    }
+}

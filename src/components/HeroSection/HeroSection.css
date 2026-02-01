@@ -1,0 +1,329 @@
+.hero-section {
+  width: 100%;
+  padding: 3rem 0;
+  background-color: #f8f9fa;
+}
+
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Text styling */
+.hero-text {
+  margin-bottom: 2.5rem;
+  max-width: 800px;
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1.2rem;
+  color: #222;
+  line-height: 1.2;
+  font-family: Carmine;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 0;
+}
+
+/* Button styling */
+.hero-actions {
+  position: absolute;
+  top: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 5;
+  /* Ensure it’s above image */
+}
+
+.image-frame-h1 {
+  height: 30px;
+}
+
+:root {
+  --btn-primary-bg: #000;
+  --btn-primary-hover: #333;
+  --btn-secondary-border: #000;
+  --btn-secondary-hover: #f0f0f0;
+  --btn-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  --btn-active-transform: translateY(1px);
+  --btn-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --btn-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-btn {
+  --scale: 1;
+  position: relative;
+  padding: 15px 100px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--btn-transition);
+  transform: scale(var(--scale)) translateZ(0);
+  will-change: transform, box-shadow, background-color;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  box-shadow: var(--btn-shadow);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Primary Button */
+.hero-btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: #fff;
+}
+
+.hero-btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+  transform: translateY(-2px) scale(var(--scale));
+  box-shadow: var(--btn-shadow-hover);
+}
+
+.hero-btn-primary:active {
+  transform: var(--btn-active-transform);
+  box-shadow: var(--btn-shadow);
+}
+
+/* Secondary Button */
+.hero-btn-secondary {
+  background-color: transparent;
+  color: var(--btn-secondary-border);
+  border: 2px solid var(--btn-secondary-border);
+  background-clip: padding-box;
+  /* Prevents background bleed on border-radius */
+}
+
+.hero-btn-secondary:hover {
+  background-color: var(--btn-secondary-hover);
+  transform: translateY(-2px) scale(var(--scale));
+  box-shadow: var(--btn-shadow-hover);
+}
+
+.hero-btn-secondary:active {
+  transform: var(--btn-active-transform);
+  box-shadow: var(--btn-shadow);
+}
+
+/* Focus States (Accessibility) */
+.hero-btn:focus-visible {
+  outline: 2px solid #4d90fe;
+  outline-offset: 2px;
+}
+
+/* Disabled State */
+.hero-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Optional: Ripple Effect (Add JS for full functionality) */
+.hero-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.hero-btn-primary:hover::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0) translate(-50%, -50%);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(20, 20) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+/* Collage container */
+css Copy .collage-container {
+  width: 100%;
+  max-width: 1800px;
+  /* Increased from 1200px to 1400px */
+  margin: 0 auto;
+  padding: 0 20px;
+  /* Added padding to prevent edge touching */
+}
+
+.collage-background {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.collage-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collage-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 30px;
+  background-color: #fafafc;
+}
+
+.collage-main-image {
+  width: 32%;
+  height: 58%;
+  object-fit: cover;
+  border-radius: 12px;
+  position: absolute;
+  top: 38%;
+  /* Moved up for more space below */
+  left: 34%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+
+.collage-left-image {
+  width: 28%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 12px;
+  position: absolute;
+  top: 4%;
+  left: 2%;
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  z-index: 3;
+}
+
+
+.collage-right-image {
+  width: 28%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 12px;
+  position: absolute;
+  top: 4%;
+  right: 2%;
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  z-index: 3;
+}
+
+
+.collage-main-image:hover,
+.collage-left-image:hover,
+.collage-right-image:hover {
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .collage-background {
+    height: 500px;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-text h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-btn {
+    width: 100%;
+  }
+
+  .collage-background {
+    height: 450px;
+  }
+
+  .collage-images {
+    padding: 20px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 0;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .collage-background {
+    height: 600px;
+  }
+
+  .collage-images {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    padding: 15px;
+  }
+
+  .collage-main-image,
+  .collage-left-image,
+  .collage-right-image {
+    grid-column: 1;
+    align-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .collage-background {
+    height: 500px;
+  }
+}

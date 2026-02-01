@@ -1,0 +1,394 @@
+.about-page {
+  width: 100%;
+  background-color: #fff;
+  margin-top: 10%;
+}
+
+/* About Banner Section */
+.about-banner-section {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  z-index: 1;
+}
+
+.slider-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  filter: blur(3px);
+}
+
+.slider-image.active {
+  opacity: 1;
+}
+
+.slider-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.about-banner-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  width: 100%;
+  padding: 0 20px;
+  margin-top: -100px;
+}
+
+@keyframes glowingText {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 30px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 30px rgba(255, 255, 255, 0.8),
+                 0 0 40px rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 30px rgba(255, 255, 255, 0.8);
+  }
+}
+
+@keyframes splitLetter {
+  0%, 100% { transform: translateY(0) rotate(0); opacity: 1; }
+  50% { transform: translateY(-20px) rotate(5deg); opacity: 0.5; }
+}
+
+.about-banner-content h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  margin-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: -150px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.about-banner-content h1 span {
+  display: inline-block;
+  animation: splitLetter 2s ease-in-out infinite;
+  animation-play-state: paused;
+  transition: transform 0.3s ease;
+}
+
+.about-banner-content h1:hover span {
+  animation-play-state: running;
+}
+
+.about-banner-content h1 span:nth-child(2n) {
+  animation-delay: 0.1s;
+}
+
+.about-banner-content h1 span:nth-child(3n) {
+  animation-delay: 0.2s;
+}
+
+.about-banner-content h1 span:nth-child(4n) {
+  animation-delay: 0.3s;
+}
+
+.about-banner-content h1 span:nth-child(5n) {
+  animation-delay: 0.4s;
+}
+
+.about-banner-description {
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  opacity: 0.95;
+  letter-spacing: 0.05em;
+  margin: 0;
+  animation: glowingText 3s ease-in-out infinite;
+}
+
+.subtitle-separator {
+  font-size: 0.5rem;
+  opacity: 0.7;
+  margin-top: 3px;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+/* Content Section */
+.about-content-section {
+  background-color: #fff;
+  padding: 6rem 0;
+}
+
+.content-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.about-description {
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: -250px;
+}
+
+.about-description p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 2rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.tagline {
+  font-size: 1.4rem !important;
+  color: #1D1D1D !important;
+  text-align: center !important;
+  font-style: italic;
+  margin-top: 3rem !important;
+  font-weight: 500;
+}
+
+/* Enhanced Media Queries for Better Responsiveness */
+@media (max-width: 1024px) {
+  .about-banner-section {
+    height: 70vh;
+  }
+
+  .about-banner-content h1 {
+    font-size: 4rem;
+    margin-top: -120px;
+  }
+
+  .about-banner-description {
+    font-size: 1.1rem;
+  }
+
+  .about-description {
+    margin-top: -200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    margin-top: 8%;
+  }
+
+  .about-banner-section {
+    height: 60vh;
+  }
+
+  .about-banner-content {
+    padding: 0 15px;
+    margin-top: -80px;
+  }
+
+  .about-banner-content h1 {
+    font-size: 3rem;
+    margin-top: -100px;
+    letter-spacing: 0.05em;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about-banner-description {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .slider-dots {
+    bottom: 1.5rem;
+  }
+
+  .slider-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .about-content-section {
+    padding: 4rem 0;
+  }
+
+  .content-container {
+    padding: 0 1.5rem;
+  }
+
+  .about-description {
+    margin-top: -150px;
+  }
+
+  .about-description p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .tagline {
+    font-size: 1.2rem !important;
+    margin-top: 2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-page {
+    margin-top: 20%;
+  }
+  
+  .about-banner-section {
+    height: 50vh;
+    border-radius: 20px;
+  }
+
+  .about-banner-content {
+    padding: 0 10px;
+    margin-top: -60px;
+  }
+
+  .about-banner-content h1 {
+    font-size: 2.2rem;
+    margin-top: -80px;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+  }
+
+  .about-banner-description {
+    font-size: 0.9rem;
+    padding: 0 5px;
+  }
+
+  .slider-dots {
+    bottom: 1rem;
+    gap: 8px;
+  }
+
+  .slider-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .about-content-section {
+    padding: 0;
+  }
+
+  .content-container {
+    padding: 0 1rem;
+  }
+
+  .about-description {
+    margin-top: -100px;
+  }
+
+  .about-description p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 1.1rem !important;
+    margin-top: 1.5rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .about-page {
+    margin-top: 15%;
+  }
+
+  .about-banner-section {
+    height: 45vh;
+  }
+
+  .about-banner-content h1 {
+    font-size: 1.8rem;
+    margin-top: -60px;
+  }
+
+  .about-banner-description {
+    font-size: 0.8rem;
+  }
+
+  .about-description {
+    margin-top: -80px;
+  }
+
+  .about-description p {
+    font-size: 0.95rem;
+  }
+
+  .tagline {
+    font-size: 1rem !important;
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .about-banner-section {
+    height: 80vh;
+  }
+
+  .about-banner-content h1 {
+    font-size: 2.5rem;
+    margin-top: -60px;
+  }
+
+  .about-banner-description {
+    font-size: 0.9rem;
+  }
+
+  .about-description {
+    margin-top: -120px;
+  }
+}
