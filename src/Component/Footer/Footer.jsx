@@ -15,14 +15,14 @@ const Footer = () => {
             <Link to="/track-order" className="footer-link">Order Tracking</Link>
             <Link to="/terms" className="footer-link">Shipping Policy</Link>
           </div>
-          <p className="copyright">© 2026 UniqueStore. All rights reserved.</p>
+          <p className="copyright">© 2026 Wonder Cart. All rights reserved.</p>
         </div>
 
         {/* Middle Section - Logo */}
         <div className="footer-logo-section">
           <div className="footer-logo">
             <Link to="/" className="logo" style={{ textDecoration: 'none', color: '#000', fontSize: '24px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              UniqueStore
+              Wonder Cart
             </Link>
           </div>
 

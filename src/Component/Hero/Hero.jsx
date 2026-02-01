@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 import OptimizedImage from "../OptimizedImage";
-import bannerImage from "../../assets/banner001.jpg";
+
 
 function Hero() {
   const navigate = useNavigate();
@@ -35,20 +35,9 @@ function Hero() {
 
   const handleShopNow = () => navigate("/all-products");
   const handleExplore = () => navigate("/new-arrivals");
-  const handleCloseBanner = () => setShowBanner(false);
 
   return (
     <section className="hero-modern">
-      {/* Banner Modal */}
-      {showBanner && (
-        <div className="banner-modal-overlay">
-          <div className="banner-modal">
-            <button className="banner-close-btn" onClick={handleCloseBanner}>✕</button>
-            <img src={bannerImage} alt="UniqueStore Banner" className="banner-modal-image" loading="lazy" />
-          </div>
-        </div>
-      )}
-
       {/* Decorative background elements */}
       <div className="modern-bg-text">UNIQUE</div>
 

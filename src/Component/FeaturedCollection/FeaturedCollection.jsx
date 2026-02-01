@@ -39,9 +39,58 @@ const FeaturedCollection = () => {
           },
           {
             id: 'demo-3',
-            product_name: 'Kinetic Art Toy',
+            product_name: 'Kinetic Art Sculpture',
             mrp: 3999,
             firstImage: '/kinetic_toy.png',
+            created_at: new Date().toISOString()
+          },
+          {
+            id: 'demo-4',
+            product_name: 'Premium Velvet Bedding',
+            mrp: 12999,
+            firstImage: '/levitating_plant.png',
+            created_at: new Date().toISOString()
+          },
+          {
+            id: 'demo-5',
+            product_name: 'Urban Explorer Backpack',
+            mrp: 5499,
+            firstImage: '/levitating_plant.png',
+            created_at: new Date().toISOString()
+          },
+          {
+            id: 'demo-6',
+            product_name: 'Artisan Silk Cushion',
+            mrp: 1850,
+            firstImage: '/levitating_plant.png',
+            created_at: new Date().toISOString()
+          },
+          {
+            id: 'demo-7',
+            product_name: 'Smart Gear Pro Watch',
+            mrp: 8999,
+            firstImage: '/levitating_plant.png',
+            created_at: new Date().toISOString()
+          },
+          {
+            id: 'demo-8',
+            product_name: 'Luxury Quilt Collection',
+            mrp: 7500,
+            firstImage: '/levitating_plant.png',
+            created_at: new Date().toISOString()
+          },
+          {
+            id: 'demo-9',
+            product_name: 'Modern Accent Decor',
+            mrp: 3200,
+            firstImage: '/levitating_plant.png',
+            created_at: new Date().toISOString()
+          },
+          {
+            id: 'demo-10',
+            product_name: 'Egyptian Cotton Sheets',
+            mrp: 4200,
+            firstImage: '/levitating_plant.png',
             created_at: new Date().toISOString()
           }
         ];
@@ -59,56 +108,37 @@ const FeaturedCollection = () => {
             if (data.image) {
               const imagesArr = data.image.split(',').map(img => img.trim()).filter(Boolean);
               if (imagesArr.length > 0) {
-                firstImage = imagesArr[0].startsWith('/') ? imagesArr[0] : `/${imagesArr[0]}`;
+                firstImage = imagesArr[0].startsWith('http') ? imagesArr[0] : (imagesArr[0].startsWith('/') ? imagesArr[0] : `/${imagesArr[0]}`);
               }
             }
-            // Only add products that have a valid image
-            if (firstImage) {
+            // Strict filtering: Only add products that have a valid image and price
+            if (firstImage && firstImage.length > 4 && Number(data.mrp) > 0) {
               productsArr.push({ ...data, firstImage });
             }
           });
         } catch (e) {
-          console.warn("Firestore access problem, using demo data", e);
+          console.warn("Firestore access problem", e);
         }
 
-        // If no featured products found in DB, use demo products
-        if (productsArr.length === 0) {
-          productsArr = DEMO_PRODUCTS;
-        } else {
-          // Optional: You could mix them if you wanted, but usually you want one or the other.
-          // However, if the images in DB are broken (white cards), we might prefer Demo ones.
-          // For this specific request "isme kuch unique product... lgao", I will append them to ensure they show up!
-          productsArr = [...productsArr, ...DEMO_PRODUCTS];
-        }
+        // Combine: Curated 10 first, then DB items
+        let finalProducts = [...DEMO_PRODUCTS];
 
-        setProducts(productsArr);
+        // Add DB products at the end
+        productsArr.forEach(dbItem => {
+          const isDuplicate = finalProducts.some(p =>
+            p.product_name.toLowerCase() === dbItem.product_name.toLowerCase()
+          );
+          if (!isDuplicate) {
+            finalProducts.push(dbItem);
+          }
+        });
+
+        // Strictly show 10 as requested
+        setProducts(finalProducts.slice(0, 10));
         setError(null);
       } catch (err) {
-        // Fallback to demo products on error
-        setProducts([
-          {
-            id: 'demo-1',
-            product_name: 'Levitating Air Bonsai',
-            mrp: 4999,
-            firstImage: '/levitating_plant.png',
-            created_at: new Date().toISOString()
-          },
-          {
-            id: 'demo-2',
-            product_name: 'Galaxy Moon Lamp',
-            mrp: 2499,
-            firstImage: '/moon_lamp.png',
-            created_at: new Date().toISOString()
-          },
-          {
-            id: 'demo-3',
-            product_name: 'Kinetic Art Toy',
-            mrp: 3999,
-            firstImage: '/kinetic_toy.png',
-            created_at: new Date().toISOString()
-          }
-        ]);
         console.error('Error fetching products:', err);
+        setError('Failed to load featured products');
       } finally {
         setLoading(false);
       }

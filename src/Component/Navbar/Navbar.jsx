@@ -241,7 +241,7 @@ function Navbar() {
                 }
               }}
             >
-              <img src="/logo.png" alt="UniqueStore" className="navbar-logo-image" style={{ height: '84px', width: 'auto' }} />
+              <img src="/logo.png" alt="Wonder Cart" className="navbar-logo-image" style={{ height: '84px', width: 'auto' }} />
             </Link>
           </div>
 

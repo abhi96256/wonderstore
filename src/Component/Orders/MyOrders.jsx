@@ -3,17 +3,17 @@ import { useAuth } from '../../context/AuthContext';
 import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import './MyOrders.css';
-import { 
-  FaSpinner, 
-  FaShoppingBag, 
-  FaMapMarkerAlt, 
-  FaCalendarAlt, 
-  FaMoneyBillWave, 
-  FaCheckCircle, 
-  FaBox, 
-  FaTruck, 
-  FaClipboardCheck, 
-  FaHome, 
+import {
+  FaSpinner,
+  FaShoppingBag,
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaMoneyBillWave,
+  FaCheckCircle,
+  FaBox,
+  FaTruck,
+  FaClipboardCheck,
+  FaHome,
   FaClock,
   FaUser,
   FaPhone,
@@ -36,32 +36,39 @@ const MyOrders = () => {
     const fetchOrders = async () => {
       try {
         setLoading(true);
-        
+
         if (user && user.uid) {
           // Fetch orders from successfulPayments collection
+          // Removed orderBy to avoid missing index error
           const paymentsQuery = query(
             collection(db, 'successfulPayments'),
-            where('userId', '==', user.uid),
-            orderBy('payment_date', 'desc')
+            where('userId', '==', user.uid)
           );
-          
+
           const querySnapshot = await getDocs(paymentsQuery);
           const ordersData = [];
-          
+
           querySnapshot.forEach((doc) => {
             ordersData.push({
               id: doc.id,
               ...doc.data()
             });
           });
-          
+
+          // Sort client-side
+          ordersData.sort((a, b) => {
+            const dateA = a.payment_date?.toDate?.() || new Date(a.payment_date || a.created_at || 0);
+            const dateB = b.payment_date?.toDate?.() || new Date(b.payment_date || b.created_at || 0);
+            return dateB - dateA; // Descending
+          });
+
           setOrders(ordersData);
         } else {
           // If not logged in, check localStorage as fallback
           const storedOrders = JSON.parse(localStorage.getItem('orders') || '[]');
           setOrders(storedOrders);
         }
-        
+
         setError(null);
       } catch (err) {
         console.error('Error fetching orders:', err);
@@ -77,7 +84,7 @@ const MyOrders = () => {
   // Format date function
   const formatDate = (timestamp) => {
     if (!timestamp) return 'N/A';
-    
+
     // Handle Firestore timestamp
     if (timestamp && timestamp.toDate) {
       return timestamp.toDate().toLocaleDateString('en-IN', {
@@ -86,7 +93,7 @@ const MyOrders = () => {
         day: 'numeric'
       });
     }
-    
+
     // Handle ISO string or other date formats
     try {
       return new Date(timestamp).toLocaleDateString('en-IN', {
@@ -102,7 +109,7 @@ const MyOrders = () => {
   // Format time function
   const formatTime = (timestamp) => {
     if (!timestamp) return 'N/A';
-    
+
     // Handle Firestore timestamp
     if (timestamp && timestamp.toDate) {
       return timestamp.toDate().toLocaleTimeString('en-IN', {
@@ -110,7 +117,7 @@ const MyOrders = () => {
         minute: '2-digit'
       });
     }
-    
+
     // Handle ISO string or other date formats
     try {
       return new Date(timestamp).toLocaleTimeString('en-IN', {
@@ -153,12 +160,12 @@ const MyOrders = () => {
   // Get order images
   const getItemImages = (item) => {
     if (!item.image) return 'https://placehold.co/100x100?text=Product';
-    
+
     // Handle comma-separated image URLs
     if (typeof item.image === 'string' && item.image.includes(',')) {
       return item.image.split(',')[0].trim();
     }
-    
+
     return item.image;
   };
 
@@ -216,12 +223,12 @@ const MyOrders = () => {
         day: 'numeric'
       });
     }
-    
+
     // Fallback to default calculation if no estimated date is set
     if (!order.payment_date && !order.created_at && !order.orderDate) {
       return 'N/A';
     }
-    
+
     let orderDate;
     if (order.payment_date && order.payment_date.toDate) {
       orderDate = order.payment_date.toDate();
@@ -230,10 +237,10 @@ const MyOrders = () => {
     } else {
       orderDate = new Date(order.orderDate || Date.now());
     }
-    
+
     const estimatedDate = new Date(orderDate);
     estimatedDate.setDate(orderDate.getDate() + 5);
-    
+
     return estimatedDate.toLocaleDateString('en-IN', {
       year: 'numeric',
       month: 'long',
@@ -288,7 +295,7 @@ const MyOrders = () => {
         </div>
       </div>
       <div className="myorders-divider"></div>
-      
+
       {orders.length === 0 ? (
         <div className="myorders-no-orders">
           <p>You haven't placed any orders yet.</p>
@@ -298,7 +305,7 @@ const MyOrders = () => {
           {orders.length} order{orders.length !== 1 ? 's' : ''} placed
         </div>
       )}
-      
+
       <div className="myorders-list">
         {orders.map(order => (
           <div key={order.id} className="myorders-card">
@@ -310,7 +317,7 @@ const MyOrders = () => {
                 <FaCheckCircle /> {getOrderStatus(order)}
               </div>
             </div>
-            
+
             <div className="myorders-content">
               <div className="myorders-info">
                 <div className="myorders-info-left">
@@ -342,7 +349,7 @@ const MyOrders = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="myorders-items-container">
                 <div className="myorders-items-title">
                   <FaBox /> Order Items
@@ -351,9 +358,9 @@ const MyOrders = () => {
                   {(order.items || []).map((item, index) => (
                     <div key={index} className="myorders-item">
                       <div className="myorders-item-image">
-                        <img 
-                          src={getItemImages(item)} 
-                          alt={item.name} 
+                        <img
+                          src={getItemImages(item)}
+                          alt={item.name}
                           onError={(e) => { e.target.src = 'https://placehold.co/100x100?text=Product' }}
                         />
                       </div>
@@ -368,7 +375,7 @@ const MyOrders = () => {
                   ))}
                 </div>
               </div>
-              
+
               {order.shippingAddress && (
                 <div className="myorders-address">
                   <div className="myorders-address-header">
@@ -409,7 +416,7 @@ const MyOrders = () => {
                   </div>
                 </div>
               )}
-              
+
               <div className="myorders-delivery">
                 <div className="myorders-delivery-header">
                   <FaTruck />
@@ -417,8 +424,8 @@ const MyOrders = () => {
                 </div>
                 <div className="myorders-delivery-tracker">
                   {getDeliverySteps(order).map((step) => (
-                    <div 
-                      key={step.id} 
+                    <div
+                      key={step.id}
                       className={`myorders-delivery-step ${step.active ? 'myorders-step-active' : ''} ${step.completed ? 'myorders-step-completed' : ''}`}
                     >
                       <div className="myorders-step-icon">

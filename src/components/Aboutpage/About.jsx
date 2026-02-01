@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './About.css';
-import { sliderImages } from '../../assets/about/slider-images';
+const sliderImages = [
+  { image: '/levitating_plant.png', alt: 'Levitating Art' },
+  { image: '/moon_lamp.png', alt: 'Galaxy Moon' },
+  { image: '/kinetic_toy.png', alt: 'Kinetic Movement' }
+];
 
 const About = () => {
   const [sliderIndex, setSliderIndex] = useState(0);
@@ -33,14 +37,14 @@ const About = () => {
         <div className="about-banner-content">
           <div className="title-container">
             <h1>
-              {"ABOUT UNIQUESTORE".split('').map((letter, index) => (
+              {"ABOUT WONDER CART".split('').map((letter, index) => (
                 <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>
                   {letter === ' ' ? '\u00A0' : letter}
                 </span>
               ))}
             </h1>
             <p className="about-banner-description">
-              Where Innovation Meets Art • Crafting Exclusivity Since 2024
+              Where Dreams Become Reality • Crafting Wonders Since 2024
             </p>
           </div>
         </div>
@@ -61,10 +65,9 @@ const About = () => {
         <div className="content-container">
           <div className="about-description">
             <p>
-              At UniqueStore, we believe that your lifestyle should be as unique as you are.
-              Inspired by the pursuit of excellence and the beauty of rare craftsmanship,
-              UniqueStore brings you a curated collection of luxury tech, artisanal crafts,
-              and premium lifestyle essentials.
+              At Wonder Cart, we believe that your lifestyle should be a reflection of your dreams.
+              Inspired by the pursuit of wonder and the beauty of curated gifts,
+              Wonder Cart brings you a collection that speaks to the heart.
             </p>
 
             <p>
@@ -77,12 +80,12 @@ const About = () => {
 
             <p>
               We work with world-class designers and master artisans to create pieces that
-              don't just exist, but inspire. Every item from UniqueStore is a statement of
+              don't just exist, but inspire. Every item from Wonder Cart is a statement of
               rarity and sophistication — crafted for those who settle for nothing but the exceptional.
             </p>
 
             <p className="tagline">
-              UniqueStore — where innovation meets craft.
+              Wonder Cart — Dream It. Shop It. Live It.
             </p>
           </div>
         </div>

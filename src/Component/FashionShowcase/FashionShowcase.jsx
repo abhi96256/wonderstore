@@ -23,9 +23,10 @@ const FashionShowcase = () => {
             >
               100+
             </h1>
-            <h2 className="main-subtitle">Collection of Inspired Living</h2>
+            <h2 className="main-subtitle">Handpicked Wonders
+            </h2>
             <p className="main-description">
-              Transform your space with a collection that speaks style and soul. <span className="mobile-hidden">Explore pieces crafted to inspire and elevate everyday living.</span>
+              Where style meets soul — curated to inspire every corner of your home. <span className="mobile-hidden">Explore pieces crafted to inspire and elevate everyday living.</span>
             </p>
           </div>
           <div className="shop-nowbtn" onClick={handleShopNow}>
@@ -57,15 +58,15 @@ const FashionShowcase = () => {
               <div className="info-card-header">
                 <img src="./image-icon.webp" alt="img" loading="lazy" />
                 <span>
-                  cushion collection
+                  Small Details. Big Style.
                 </span>
               </div>
               <div className="info-card-content">
                 <p>
-                  Express Your Style, one cushion at a time
+                  Little Wonders for Your Space.
                 </p>
                 <p>
-                  showcase your style through thoughtfully curated, stylish accents for every space
+                  Curated accents for a touch of wonder.
                   <svg
                     onClick={handleShopNow}
                     xmlns="http://www.w3.org/2000/svg"
@@ -106,14 +107,12 @@ const FashionShowcase = () => {
               <div className="showcase-side-image-bottom">
                 <div className="showcase-side-image-card">
                   <div className="showcase-side-image-badge">
-                    CUSHION COLLECTION
+                    WONDER COLLECTION
                   </div>
                   <h2 className="showcase-side-image-title">
-                    Let Your Cushions
+                    Do the Wonder Talking.
                     <br />
-                    Do The Talking
-                    <br />
-                    Style That's All You
+
                   </h2>
                 </div>
               </div>

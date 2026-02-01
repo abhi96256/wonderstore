@@ -85,7 +85,7 @@ const SeedData = () => {
                         updatedAt: serverTimestamp()
                     });
                 }
-                setStatus('Success! Your UniqueStore is now populated with products. You can close this page.');
+                setStatus('Success! Your Wonder Cart is now populated with products. You can close this page.');
             } catch (error) {
                 console.error("Error seeding data:", error);
                 setStatus('Error: ' + error.message);
@@ -96,7 +96,7 @@ const SeedData = () => {
 
     return (
         <div style={{ padding: '50px', textAlign: 'center', fontFamily: 'Montserrat, sans-serif' }}>
-            <h2>🌱 UniqueStore Seeder</h2>
+            <h2>🌱 Wonder Cart Seeder</h2>
             <p style={{ fontSize: '1.2rem', color: '#666' }}>{status}</p>
             {status.includes('Success') && (
                 <button

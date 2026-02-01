@@ -22,7 +22,7 @@ const CollectionIntro = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/new-arrivals-wish');
+
   };
 
   return (
@@ -31,8 +31,8 @@ const CollectionIntro = () => {
         {/* Left side heading */}
         <div className="heading-container">
           <h1 className="main-heading">
-            YOUR DREAMS ARE WITHIN REACH<br />
-            MANIFEST THEM NOW
+            DREAM IT. SHOP IT. LIVE IT.<br />
+            ONLY ON WONDER CART
           </h1>
         </div>
       </div>

@@ -13,22 +13,32 @@ const OptimizedImage = ({ src, alt, className = "", containerClass = "" }) => {
     const [error, setError] = useState(false);
 
     useEffect(() => {
+        if (!src) {
+            setError(true);
+            return;
+        }
+        setIsLoaded(false);
+        setError(false);
+
         const img = new Image();
         img.src = src;
         img.onload = () => setIsLoaded(true);
         img.onerror = () => setError(true);
     }, [src]);
 
+    const displaySrc = error || !src ? 'https://placehold.co/600x600?text=Premium+Collection' : src;
+
     return (
-        <div className={`optimized-image-container ${!isLoaded ? 'skeleton-loader' : ''} ${containerClass}`}>
+        <div className={`optimized-image-container ${!isLoaded && !error ? 'skeleton-loader' : ''} ${containerClass}`}>
             <img
-                src={src}
+                src={displaySrc}
                 alt={alt}
-                className={`optimized-image ${className} ${isLoaded ? 'loaded' : ''}`}
+                className={`optimized-image ${className} ${isLoaded ? 'loaded' : ''} ${error ? 'error-fallback' : ''}`}
                 loading="lazy"
-                onLoad={() => setIsLoaded(true)}
+                onLoad={() => {
+                    if (!error) setIsLoaded(true);
+                }}
             />
-            {/* Optional: Add a very tiny (base64 or low-res) placeholder here if you want Blur-up effect */}
             {!isLoaded && !error && (
                 <div className="placeholder-overlay"></div>
             )}
