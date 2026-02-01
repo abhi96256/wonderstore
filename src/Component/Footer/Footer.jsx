@@ -21,8 +21,8 @@ const Footer = () => {
         {/* Middle Section - Logo */}
         <div className="footer-logo-section">
           <div className="footer-logo">
-            <Link to="/" className="logo" style={{ textDecoration: 'none', color: '#000', fontSize: '24px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              Wonder Cart
+            <Link to="/" className="logo">
+              <img src="/logo.png" alt="Wonder Cart" style={{ height: '70px', width: 'auto' }} />
             </Link>
           </div>
 

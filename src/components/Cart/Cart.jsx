@@ -175,7 +175,7 @@ const Cart = () => {
     if (promoCodeTrimmed === "WISH11:11") {
       setPromoError("This promo code is no longer valid.");
     } else {
-      setPromoError("Invalid promo code. Try 'UNIQ11:11' for 11% off or 'NEW10OFF' for 10% off");
+      setPromoError("Invalid promo code. Please check and try again.");
     }
     setPromoApplied(false);
     setDiscount(0);
@@ -327,10 +327,7 @@ const Cart = () => {
         </div>
 
         <div className="order-summary">
-          <div className="promo-info-banner">
-            Use <b>NEW10OFF</b> for 10% off |
-            <b>UNIQ11:11</b> for 11% off
-          </div>
+
           <h3 className="summary-header">Order Summary</h3>
 
           {selectMode && (
@@ -378,9 +375,7 @@ const Cart = () => {
             <span>Shipping:</span>
             <span>₹{shipping.toFixed(2)}</span>
           </div>
-          <div className="summary-row shipping-note">
-            <span className="shipping-info-animated" style={{ margin: 'auto' }}>Free shipping on orders above ₹2999</span>
-          </div>
+
           <div className="summary-row total-row">
             <span>Total:</span>
             <span>₹{totalAfterDiscount.toFixed(2)}</span>
