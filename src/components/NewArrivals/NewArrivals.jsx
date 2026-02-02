@@ -81,11 +81,16 @@ const NewArrivals = () => {
         // Get products added in the last 30 days as new arrivals
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+        const allowedCategories = ["Unique Speaker", "Lamps", "Humidifier"];
+
         const newProducts = products.filter(product => {
-          if (!product.created_at) return true;
-          const productDate = new Date(product.created_at);
           const hasImage = product.image && product.image.trim() !== '';
-          return productDate >= thirtyDaysAgo && hasImage;
+          const isAllowedCategory = allowedCategories.includes(product.category);
+
+          // Show products if they have an image and are in the allowed categories
+          // We'll also consider them "new" if they were added in the last 30 days
+          // but for development we'll show all in these categories
+          return hasImage && isAllowedCategory;
         });
 
         // Sort new arrivals by creation date (newest first)
@@ -96,27 +101,25 @@ const NewArrivals = () => {
         });
 
         setNewArrivals(sortedNewProducts);
-        // Set featured product (first item with discount or first new arrival)
+        // Set featured product
         const discountedProduct = newProducts.find(product => product.discount);
         if (discountedProduct) {
           setFeaturedProduct(discountedProduct);
         } else if (newProducts.length > 0) {
           setFeaturedProduct(newProducts[0]);
         }
-        // Organize products by categories and sort by creation date (newest first)
-        const sortByCreationDate = (products) => {
-          return products.sort((a, b) => {
-            const dateA = a.createdAt?.toDate?.() || new Date(a.created_at || 0);
-            const dateB = b.createdAt?.toDate?.() || new Date(b.created_at || 0);
-            return dateB - dateA; // Newest first
-          });
-        };
 
-        const categoriesFound = Array.from(new Set(products.map(p => p.category).filter(Boolean)));
         const categorizedProducts = {};
-        categoriesFound.forEach(cat => {
+        allowedCategories.forEach(cat => {
           const key = cat.toLowerCase().replace(/\s+/g, '');
-          categorizedProducts[key] = sortByCreationDate(products.filter(p => p.category === cat && p.image && p.image.trim() !== ''));
+          const filtered = products.filter(p => p.category === cat && p.image && p.image.trim() !== '');
+          if (filtered.length > 0) {
+            categorizedProducts[key] = filtered.sort((a, b) => {
+              const dateA = a.createdAt?.toDate?.() || new Date(a.created_at || 0);
+              const dateB = b.createdAt?.toDate?.() || new Date(b.created_at || 0);
+              return dateB - dateA;
+            });
+          }
         });
 
         setCategoryProducts(categorizedProducts);
@@ -169,18 +172,7 @@ const NewArrivals = () => {
   }, []); // Empty dependency array since we only want this to run once
 
   // Dynamically generate categories from newArrivals
-  const categories = React.useMemo(() => {
-    const uniqueCategories = Array.from(new Set(newArrivals.map(p => p.category).filter(Boolean)));
-    // Filter out categories that have no products with images
-    const categoriesWithProducts = uniqueCategories.filter(category =>
-      newArrivals.some(product =>
-        product.category === category &&
-        product.image &&
-        product.image.trim() !== ''
-      )
-    );
-    return ['all', ...categoriesWithProducts];
-  }, [newArrivals]);
+  const categories = ['all', 'Unique Speaker', 'Lamps', 'Humidifier'];
 
   const filteredProducts = activeTab === "all"
     ? newArrivals
@@ -574,11 +566,11 @@ const NewArrivals = () => {
           <p>
             {activeTab === "all"
               ? "Browse our complete selection of new arrivals, featuring the latest trends and must-have pieces for the season."
-              : activeTab === "cushions"
-                ? "Discover our newest cushions, from elegant designs to casual essentials, all crafted with premium fabrics."
-                : activeTab === "bedsets"
-                  ? "Complete your look with our just-arrived bedsets, including covers, sheets, and more."
-                  : "Explore our collection of dohars and quilts, perfect for every season and crafted with premium materials for ultimate comfort."}
+              : activeTab === "Unique Speaker"
+                ? "Discover our newest unique speakers, from elegant designs to high-fidelity audio essentials."
+                : activeTab === "Lamps"
+                  ? "Illuminate your space with our just-arrived lamps, featuring modern and artistic designs."
+                  : "Explore our collection of smart humidifiers, perfect for maintaining comfort and wellness in your home."}
           </p>
         </div>
 

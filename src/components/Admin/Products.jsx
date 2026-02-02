@@ -20,6 +20,7 @@ const Products = () => {
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [isNewCategory, setIsNewCategory] = useState(false);
   const [showBulkForm, setShowBulkForm] = useState(false);
   const [bulkJson, setBulkJson] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -96,6 +97,10 @@ const Products = () => {
       return searchMatch && minPriceFilter && maxPriceFilter;
     });
   }, [processedProducts, searchTerm, minPrice, maxPrice]);
+
+  const uniqueCategories = useMemo(() => {
+    return ["Unique Speaker", "Lamps", "Humidifier"].sort();
+  }, []);
 
   useEffect(() => {
     fetchProducts();
@@ -252,23 +257,7 @@ const Products = () => {
       bought: product.bought || '',
       featured: product.featured || false
     });
-    console.log('Form data set to:', {
-      product_name: product.product_name || '',
-      category: product.category || '',
-      sub_category: product.sub_category || '',
-      product_code: product.product_code || '',
-      color: product.color || '',
-      product_description: product.product_description || '',
-      material: product.material || '',
-      product_details: product.product_details || '',
-      dimension: product.dimension || '',
-      care_instructions: product.care_instructions || '',
-      inventory: product.inventory || '',
-      mrp: product.mrp || '',
-      discount: product.discount || '',
-      image: product.image || '',
-      featured: product.featured || false
-    });
+    setIsNewCategory(false);
     setShowModal(true);
   };
 
@@ -411,7 +400,10 @@ const Products = () => {
       <div className="products-header">
         <h2>Products Management</h2>
         <div className="header-buttons">
-          <button className="add-product-btn" onClick={() => setShowModal(true)}>
+          <button className="add-product-btn" onClick={() => {
+            setIsNewCategory(false);
+            setShowModal(true);
+          }}>
             <FaPlus /> Add New Product
           </button>
           <button
@@ -624,14 +616,47 @@ const Products = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label>Category</label>
-                  <input
-                    type="text"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    required
-                  />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <label style={{ marginBottom: 0 }}>Category</label>
+                    <button
+                      type="button"
+                      className="toggle-category-btn"
+                      onClick={() => setIsNewCategory(!isNewCategory)}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: '#007bff',
+                        cursor: 'pointer',
+                        fontSize: '0.85rem',
+                        textDecoration: 'underline'
+                      }}
+                    >
+                      {isNewCategory ? 'Select Existing' : 'Add New Category'}
+                    </button>
+                  </div>
+                  {isNewCategory ? (
+                    <input
+                      type="text"
+                      name="category"
+                      value={formData.category}
+                      onChange={handleInputChange}
+                      placeholder="Enter new category name"
+                      required
+                    />
+                  ) : (
+                    <select
+                      name="category"
+                      value={formData.category}
+                      onChange={handleInputChange}
+                      required
+                      className="category-select"
+                    >
+                      <option value="">Select Category</option>
+                      {uniqueCategories.map(cat => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
+                    </select>
+                  )}
                 </div>
                 <div className="form-group">
                   <label>Sub Category</label>

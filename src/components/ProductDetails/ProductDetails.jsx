@@ -1037,7 +1037,7 @@ const ProductDetails = () => {
 
       <div className="related-products">
         <h2>You May Also Like</h2>
-        <div className="products-grid">
+        <div className="related-products-grid">
           {relatedProducts.map((product) => {
             let firstImage = '';
             if (product.image) {
@@ -1049,10 +1049,10 @@ const ProductDetails = () => {
             return (
               <div
                 key={product.id}
-                className="product-card"
+                className="related-product-card"
                 onClick={() => navigate(`/product/${product.id}`)}
               >
-                <div className="product-image-container">
+                <div className="related-product-image">
                   <img
                     src={firstImage}
                     alt={product.product_name}
@@ -1065,7 +1065,7 @@ const ProductDetails = () => {
                   </div>
                   <div className="product-actions">
                     <button
-                      className="product-action-btn cart-btn"
+                      className="action-btn cart-btn"
                       onClick={(e) => handleRelatedProductAction(e, 'cart', product)}
                       title="Add to Cart"
                       disabled={product.inventory <= 0}
@@ -1073,14 +1073,14 @@ const ProductDetails = () => {
                       <FaShoppingCart />
                     </button>
                     <button
-                      className={`product-action-btn wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}`}
+                      className={`action-btn wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}`}
                       onClick={(e) => handleRelatedProductAction(e, 'wishlist', product)}
                       title={isInWishlist(product.id) ? "Remove from Wishlist" : "Add to Wishlist"}
                     >
                       {isInWishlist(product.id) ? <FaHeart /> : <FaRegHeart />}
                     </button>
                     <button
-                      className="product-action-btn quickview-btn"
+                      className="action-btn quickview-btn"
                       onClick={(e) => handleQuickView(product.id, e)}
                       title="Quick View"
                     >
@@ -1089,7 +1089,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
 
-                <div className="product-info">
+                <div className="related-product-info">
                   <h3 className="product-name">{product.product_name}</h3>
                   <p className="product-category">
                     {product.category}
@@ -1133,7 +1133,7 @@ const ProductDetails = () => {
 
       <div className="recently-viewed">
         <h2>Recently Viewed</h2>
-        <div className="products-grid">
+        <div className="recently-viewed-grid">
           {recentlyViewedProducts.map((product) => {
             let firstImage = '';
             if (product.image) {
@@ -1145,10 +1145,10 @@ const ProductDetails = () => {
             return (
               <div
                 key={product.id}
-                className="product-card"
+                className="recent-product-card"
                 onClick={() => navigate(`/product/${product.id}`)}
               >
-                <div className="product-image-container">
+                <div className="recent-product-image">
                   <img
                     src={firstImage}
                     alt={product.product_name}
@@ -1161,7 +1161,7 @@ const ProductDetails = () => {
                   </div>
                   <div className="product-actions">
                     <button
-                      className="product-action-btn cart-btn"
+                      className="action-btn cart-btn"
                       onClick={(e) => handleRelatedProductAction(e, 'cart', product)}
                       title="Add to Cart"
                       disabled={product.inventory <= 0}
@@ -1169,14 +1169,14 @@ const ProductDetails = () => {
                       <FaShoppingCart />
                     </button>
                     <button
-                      className={`product-action-btn wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}`}
+                      className={`action-btn wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}`}
                       onClick={(e) => handleRelatedProductAction(e, 'wishlist', product)}
                       title={isInWishlist(product.id) ? "Remove from Wishlist" : "Add to Wishlist"}
                     >
                       {isInWishlist(product.id) ? <FaHeart /> : <FaRegHeart />}
                     </button>
                     <button
-                      className="product-action-btn quickview-btn"
+                      className="action-btn quickview-btn"
                       onClick={(e) => handleQuickView(product.id, e)}
                       title="Quick View"
                     >
@@ -1185,7 +1185,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
 
-                <div className="product-info">
+                <div className="recent-product-info">
                   <h3 className="product-name">{product.product_name}</h3>
                   <p className="product-category">
                     {product.category}
@@ -1208,7 +1208,7 @@ const ProductDetails = () => {
 
       <div className="trending-products">
         <h2>Trending Now</h2>
-        <div className="products-grid">
+        <div className="trending-products-grid">
           {trendingProducts.map((product) => {
             let firstImage = '';
             if (product.image) {
@@ -1220,10 +1220,10 @@ const ProductDetails = () => {
             return (
               <div
                 key={product.id}
-                className="product-card"
+                className="trending-product-card"
                 onClick={() => navigate(`/product/${product.id}`)}
               >
-                <div className="product-image-container">
+                <div className="trending-product-image">
                   <img
                     src={firstImage}
                     alt={product.product_name}
@@ -1236,7 +1236,7 @@ const ProductDetails = () => {
                   </div>
                   <div className="product-actions">
                     <button
-                      className="product-action-btn cart-btn"
+                      className="action-btn cart-btn"
                       onClick={(e) => handleRelatedProductAction(e, 'cart', product)}
                       title="Add to Cart"
                       disabled={product.inventory <= 0}
@@ -1244,14 +1244,14 @@ const ProductDetails = () => {
                       <FaShoppingCart />
                     </button>
                     <button
-                      className={`product-action-btn wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}`}
+                      className={`action-btn wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}`}
                       onClick={(e) => handleRelatedProductAction(e, 'wishlist', product)}
                       title={isInWishlist(product.id) ? "Remove from Wishlist" : "Add to Wishlist"}
                     >
                       {isInWishlist(product.id) ? <FaHeart /> : <FaRegHeart />}
                     </button>
                     <button
-                      className="product-action-btn quickview-btn"
+                      className="action-btn quickview-btn"
                       onClick={(e) => handleQuickView(product.id, e)}
                       title="Quick View"
                     >
@@ -1260,7 +1260,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
 
-                <div className="product-info">
+                <div className="trending-product-info">
                   <h3 className="product-name">{product.product_name}</h3>
                   <p className="product-category">
                     {product.category}

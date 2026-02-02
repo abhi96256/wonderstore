@@ -268,11 +268,9 @@ const AllProducts = () => {
 
   const categories = [
     { id: "all", name: "All Products", icon: <FaShoppingBag /> },
-    { id: "Luxury Tech", name: "Luxury Tech", icon: <GiWatch /> },
-    { id: "Tech Accessories", name: "Tech Accessories", icon: <FaSearch /> },
-    { id: "Home Decor", name: "Home Decor", icon: <FaCouch /> },
-    { id: "Premium Audio", name: "Premium Audio", icon: <FaBoxOpen /> },
-    { id: "Artisan Crafts", name: "Artisan Crafts", icon: <FaGift /> },
+    { id: "Unique Speaker", name: "Unique Speaker", icon: <FaBoxOpen /> },
+    { id: "Lamps", name: "Lamps", icon: <FaCouch /> },
+    { id: "Humidifier", name: "Humidifier", icon: <FaGift /> },
   ];
 
   const sortOptions = [
