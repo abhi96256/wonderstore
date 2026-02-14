@@ -9,6 +9,7 @@ import { FaArrowRight } from 'react-icons/fa';
 const HomeCategories = () => {
     const navigate = useNavigate();
     const [categoryData, setCategoryData] = useState({
+        "Holi Special": [],
         "Unique Speaker": [],
         "Lamps": [],
         "Humidifier": []
@@ -18,7 +19,7 @@ const HomeCategories = () => {
     useEffect(() => {
         const fetchCategoryProducts = async () => {
             try {
-                const categories = ["Unique Speaker", "Lamps", "Humidifier"];
+                const categories = ["Holi Special", "Unique Speaker", "Lamps", "Humidifier"];
                 const newData = {};
 
                 for (const cat of categories) {

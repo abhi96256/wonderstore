@@ -65,6 +65,42 @@ const SeedData = () => {
             featured: true,
             views: 140,
             bought: 8
+        },
+        {
+            product_name: "Premium Herbal Gulal Pack",
+            category: "Holi Special",
+            product_code: "HS-001",
+            product_description: "Set of 5 vibrant, skin-friendly herbal colors made from natural extracts.",
+            mrp: 499,
+            inventory: 100,
+            image: "https://images.unsplash.com/photo-1590059393394-d652701469e3?w=800",
+            featured: true,
+            views: 350,
+            bought: 45
+        },
+        {
+            product_name: "Crystal Color Water Blaster",
+            category: "Holi Special",
+            product_code: "HS-002",
+            product_description: "High-pressure, transparent water gun for the ultimate Holi battle.",
+            mrp: 899,
+            inventory: 50,
+            image: "https://images.unsplash.com/photo-1518131348358-18eb9898083a?w=800",
+            featured: true,
+            views: 280,
+            bought: 30
+        },
+        {
+            product_name: "Eco-Friendly Holi Hamper",
+            category: "Holi Special",
+            product_code: "HS-003",
+            product_description: "Complete Holi kit including herbal gulal, wet colors, and a protective hair oil.",
+            mrp: 1499,
+            inventory: 25,
+            image: "https://images.unsplash.com/photo-1590059393394-d652701469e3?w=800",
+            featured: true,
+            views: 420,
+            bought: 20
         }
     ];
 

@@ -81,7 +81,7 @@ const NewArrivals = () => {
         // Get products added in the last 30 days as new arrivals
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-        const allowedCategories = ["Unique Speaker", "Lamps", "Humidifier"];
+        const allowedCategories = ["Unique Speaker", "Lamps", "Humidifier", "Holi Special"];
 
         const newProducts = products.filter(product => {
           const hasImage = product.image && product.image.trim() !== '';
@@ -172,7 +172,7 @@ const NewArrivals = () => {
   }, []); // Empty dependency array since we only want this to run once
 
   // Dynamically generate categories from newArrivals
-  const categories = ['all', 'Unique Speaker', 'Lamps', 'Humidifier'];
+  const categories = ['all', 'Unique Speaker', 'Lamps', 'Humidifier', 'Holi Special'];
 
   const filteredProducts = activeTab === "all"
     ? newArrivals
@@ -570,7 +570,9 @@ const NewArrivals = () => {
                 ? "Discover our newest unique speakers, from elegant designs to high-fidelity audio essentials."
                 : activeTab === "Lamps"
                   ? "Illuminate your space with our just-arrived lamps, featuring modern and artistic designs."
-                  : "Explore our collection of smart humidifiers, perfect for maintaining comfort and wellness in your home."}
+                  : activeTab === "Holi Special"
+                    ? "Celebrate the festival of colors with our exclusive Holi Special collection, featuring herbal gulal and festive essentials."
+                    : "Explore our collection of smart humidifiers, perfect for maintaining comfort and wellness in your home."}
           </p>
         </div>
 

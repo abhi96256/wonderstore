@@ -271,6 +271,7 @@ const AllProducts = () => {
     { id: "Unique Speaker", name: "Unique Speaker", icon: <FaBoxOpen /> },
     { id: "Lamps", name: "Lamps", icon: <FaCouch /> },
     { id: "Humidifier", name: "Humidifier", icon: <FaGift /> },
+    { id: "Holi Special", name: "Holi Special", icon: <FaTags /> },
   ];
 
   const sortOptions = [

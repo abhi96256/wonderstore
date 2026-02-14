@@ -99,7 +99,7 @@ const Products = () => {
   }, [processedProducts, searchTerm, minPrice, maxPrice]);
 
   const uniqueCategories = useMemo(() => {
-    return ["Unique Speaker", "Lamps", "Humidifier"].sort();
+    return ["Unique Speaker", "Lamps", "Humidifier", "Holi Special"].sort();
   }, []);
 
   useEffect(() => {
