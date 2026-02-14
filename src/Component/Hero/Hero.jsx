@@ -16,9 +16,9 @@ function Hero() {
       subtitle: "FESTIVAL OF COLORS",
       description: "Discover our exclusive range of ultra-unique pichkaris. You won't find these one-of-a-kind designs anywhere else!",
       images: [
-        "https://images.unsplash.com/photo-1594247514785-5026955dbe19?w=1600&q=80",
-        "/17.jpg",
-        "/18.jpg"
+        "/holi/IMG_2024.JPG.jpeg",
+        "/holi/IMG_2017.JPG.jpeg",
+        "/holi/IMG_2024.JPG.jpeg",
       ],
       tag: "HOLI SPECIAL 2026",
       type: "holi",
@@ -188,52 +188,14 @@ function Hero() {
                 </div>
               </div>
 
-              {/* Stats Badge - Real-time Feel */}
-              <div className="engagement-badge">
-                <div className="stats-group">
-                  <div className="avatar-stack">
-                    <div className="avatar" style={{ backgroundColor: '#FF0080' }}>H</div>
-                    <div className="avatar" style={{ backgroundColor: '#00D4FF' }}>O</div>
-                    <div className="avatar" style={{ backgroundColor: '#00FF00' }}>L</div>
-                    <div className="avatar-plus">+5k</div>
-                  </div>
-                  <div className="stats-text">Festive Shoppers</div>
-                </div>
-              </div>
 
-              {/* Artisan Credit Badge */}
-              <div className="floating-info-card glass-premium">
-                <div className="card-dot pulse"></div>
-                <h4>Premium Selection</h4>
-                <p>Limited Festive Series</p>
-                <div className="card-accent-line"></div>
-              </div>
-
-              {/* Price Tag Overlay - 3D Bubble Style */}
               <div className="hero-price-tag bubble-3d">
-                <span className="currency">₹</span>
-                <span className="amount">199</span>
-                <span className="suffix">Live Now</span>
+                <span className="suffix">Pichkari from</span>
+                <span className="amount">₹99</span>
+                <span className="suffix">Shop Fast!</span>
               </div>
             </div>
 
-            {/* Unique Navigation Previews - Glass Cards */}
-            <div className="hero-thumbnail-previews horizontal">
-              <div className="thumb-item glass-morph" onClick={() => navigate('/all-products?category=Holi Special')}>
-                <img src="/17.jpg" alt="Holi Collection" />
-                <div className="item-label">Gulal</div>
-              </div>
-              <div className="thumb-item glass-morph" onClick={() => navigate('/all-products?category=Holi Special')}>
-                <img src="/18.jpg" alt="Holi Collection" />
-                <div className="item-label">Pichkari</div>
-              </div>
-              <div className="thumb-item accent-tilt-modern" onClick={() => navigate('/all-products?category=Holi Special')}>
-                <div className="tilt-content">
-                  <span className="count">+25</span>
-                  <span className="label">Explore</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

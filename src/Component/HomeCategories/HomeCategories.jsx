@@ -80,6 +80,18 @@ const HomeCategories = () => {
                         <button className="category-cta" onClick={() => handleViewAll(category)}>
                             Explore All <FaArrowRight />
                         </button>
+
+                        {category === "Holi Special" && (
+                            <div className="wholesale-card">
+                                <div className="wholesale-badge">BUSINESS INQUIRY</div>
+                                <p>
+                                    Looking to start your own <b>Pichkari business</b> or need <b>Wholesale supplies</b>? Contact us for highly affordable rates!
+                                </p>
+                                <button className="wholesale-contact-btn" onClick={() => navigate('/contact')}>
+                                    Contact Us for Wholesale
+                                </button>
+                            </div>
+                        )}
                     </div>
 
                     <div className="category-grid">
