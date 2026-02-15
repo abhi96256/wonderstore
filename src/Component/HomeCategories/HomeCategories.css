@@ -335,3 +335,29 @@
         font-size: 2rem;
     }
 }
+
+.flyhigh-promo-card {
+    margin-top: 2rem;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flyhigh-promo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.flyhigh-promo-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.flyhigh-promo-card h3 {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}

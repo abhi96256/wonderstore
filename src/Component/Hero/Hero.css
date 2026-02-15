@@ -1281,3 +1281,257 @@
     justify-content: center;
     z-index: 1001;
 }
+
+/* FlyHigh Hero Theme */
+.flyhigh-hero {
+    background: radial-gradient(circle at 70% 50%, #1a1a1a 0%, #000 100%);
+    color: white;
+}
+
+.flyhigh-hero .modern-bg-text {
+    color: rgba(255, 255, 255, 0.03);
+    content: "FLYHIGH";
+}
+
+.flyhigh-hero .modern-bg-text:after {
+    content: "FLY HIGH";
+    /* Override text if needed */
+}
+
+.flyhigh-hero .tag-text {
+    color: #ffaa00;
+    /* Gold */
+    text-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
+}
+
+.flyhigh-hero .line {
+    background: #ffaa00;
+}
+
+.flyhigh-hero .title-top {
+    color: white;
+}
+
+.flyhigh-hero .title-bottom {
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.5);
+    color: transparent;
+}
+
+.flyhigh-pricing-grid {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.fh-price-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.fh-price-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    border-color: #ffaa00;
+}
+
+.fh-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.fh-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffaa00;
+    font-family: 'Outfit', sans-serif;
+    /* Consistent font */
+    line-height: 1.2;
+}
+
+.fh-detail {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 2px;
+}
+
+.btn-flyhigh {
+    background: #ffaa00;
+    color: black;
+    border: none;
+}
+
+.btn-flyhigh:hover {
+    box-shadow: 0 0 20px rgba(255, 170, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+/* Background Effects */
+.flyhigh-bg-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.spark-particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00;
+    opacity: 0;
+}
+
+.spark-1 {
+    width: 4px;
+    height: 4px;
+    top: 30%;
+    left: 20%;
+    animation: spark-flash 4s infinite ease-in-out;
+}
+
+.spark-2 {
+    width: 6px;
+    height: 6px;
+    bottom: 40%;
+    right: 30%;
+    animation: spark-flash 5s infinite ease-in-out 1s;
+}
+
+.glow-orb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 170, 0, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse-glow 6s infinite alternate;
+}
+
+@keyframes spark-flash {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+    }
+}
+
+@keyframes pulse-glow {
+    from {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    to {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+
+/* Override image frame background for FlyHigh */
+.flyhigh-hero .main-image-frame {
+    background: #111;
+    box-shadow: 0 40px 100px rgba(255, 170, 0, 0.1);
+}
+
+.flyhigh-hero .btn-modern-text {
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.flyhigh-hero .btn-modern-text:hover {
+    color: #ffaa00;
+    border-bottom-color: #ffaa00;
+}
+
+
+
+/* Slider Custom Navigation */
+.slider-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    font-size: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.slider-nav-btn:hover {
+    background: #1a1a1a;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.prev-btn {
+    left: 40px;
+}
+
+.next-btn {
+    right: 40px;
+}
+
+/* Specific styling for FlyHigh dark mode */
+.flyhigh-hero .slider-nav-btn {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.flyhigh-hero .slider-nav-btn:hover {
+    background: #ffaa00;
+    color: black;
+    border-color: #ffaa00;
+    box-shadow: 0 0 20px rgba(255, 170, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .slider-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+}

@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useWishlist } from "../../context/WishlistContext.jsx";
 import { useCart } from "../../context/CartContext.jsx";
 import { addReferrerToUrl } from "../../utils/navigationUtils.js";
-import { FaShoppingBag, FaHeart, FaShoppingCart, FaEye, FaTimes, FaRegHeart, FaTshirt, FaSearch, FaChevronRight, FaStar, FaStarHalfAlt, FaRegStar, FaFilter, FaSort, FaTags, FaArrowRight, FaSlidersH, FaDollarSign, FaSortAmountDown, FaBed, FaCouch, FaGift, FaBoxOpen } from "react-icons/fa";
+import { FaShoppingBag, FaHeart, FaShoppingCart, FaEye, FaTimes, FaRegHeart, FaTshirt, FaSearch, FaChevronRight, FaStar, FaStarHalfAlt, FaRegStar, FaFilter, FaSort, FaTags, FaArrowRight, FaSlidersH, FaDollarSign, FaSortAmountDown, FaBed, FaCouch, FaGift, FaBoxOpen, FaFire } from "react-icons/fa";
 import { GiLargeDress, GiRunningShoe, GiWatch, GiHeartNecklace, GiTrousers } from "react-icons/gi";
 import "./AllProductsStyles.css";
 import { db } from '../../firebase/config';
@@ -272,6 +272,7 @@ const AllProducts = () => {
     { id: "Lamps", name: "Lamps", icon: <FaCouch /> },
     { id: "Humidifier", name: "Humidifier", icon: <FaGift /> },
     { id: "Holi Special", name: "Holi Special", icon: <FaTags /> },
+    { id: "FlyHigh", name: "FlyHigh", icon: <FaFire /> },
   ];
 
   const sortOptions = [

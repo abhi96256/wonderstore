@@ -19,7 +19,7 @@ const HomeCategories = () => {
     useEffect(() => {
         const fetchCategoryProducts = async () => {
             try {
-                const categories = ["Holi Special", "Unique Speaker", "Lamps", "Humidifier"];
+                const categories = ["Holi Special", "FlyHigh", "Unique Speaker", "Lamps", "Humidifier"];
                 const newData = {};
 
                 for (const cat of categories) {
@@ -90,6 +90,16 @@ const HomeCategories = () => {
                                 <button className="wholesale-contact-btn" onClick={() => navigate('/contact')}>
                                     Contact Us for Wholesale
                                 </button>
+                            </div>
+                        )}
+
+                        {category === "FlyHigh" && (
+                            <div className="flyhigh-promo-card" onClick={() => navigate('/all-products?category=FlyHigh')} style={{ cursor: 'pointer', marginTop: '20px' }}>
+                                <img src="/image.png" alt="FlyHigh Premium Lighters" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }} />
+                                <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                                    <h3 style={{ fontSize: '1.2rem', marginBottom: '5px' }}>Premium Collection</h3>
+                                    <p style={{ fontSize: '0.9rem', color: '#666' }}>Explore the full range of FlyHigh lighters.</p>
+                                </div>
                             </div>
                         )}
                     </div>

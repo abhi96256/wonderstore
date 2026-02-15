@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./Hero.css";
 import OptimizedImage from "../OptimizedImage";
 
@@ -9,8 +10,24 @@ function Hero() {
   const [showBanner, setShowBanner] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [holiImageIndex, setHoliImageIndex] = useState(0);
+  const [flyHighIndex, setFlyHighIndex] = useState(0);
 
   const slides = [
+    {
+      title: "FLY HIGH",
+      subtitle: "PREMIUM LIGHTERS",
+      description: "Experience the spark of innovation with our premium lighter collection. Sleek design, reliable flame.",
+      images: ["/image.png"],
+      tag: "BRAND NEW ARRIVAL",
+      type: "flyhigh",
+      pricing: [
+        { label: "Master Box", price: "₹7000", detail: "1000 Pcs" },
+        { label: "Per Box", price: "₹700", detail: "100 Pcs" },
+        { label: "Per Piece", price: "₹7", detail: "Single Unit" }
+      ],
+      ctaLabel: "VIEW BULK DEALS",
+      ctaLink: "/all-products?category=FlyHigh"
+    },
     {
       title: "CELEBRATE",
       subtitle: "FESTIVAL OF COLORS",
@@ -27,12 +44,25 @@ function Hero() {
     }
   ];
 
+  const nextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   useEffect(() => {
     if (slides[activeSlide]?.type === 'holi') {
       const imgTimer = setInterval(() => {
         setHoliImageIndex((prev) => (prev + 1) % slides[activeSlide].images.length);
       }, 3000); // Change image every 3 seconds
       return () => clearInterval(imgTimer);
+    } else if (slides[activeSlide]?.type === 'flyhigh') {
+      const fhTimer = setInterval(() => {
+        setFlyHighIndex((prev) => (prev + 1) % slides[activeSlide].images.length);
+      }, 3000);
+      return () => clearInterval(fhTimer);
     }
   }, [activeSlide, slides]);
 
@@ -40,17 +70,13 @@ function Hero() {
     if (slides.length <= 1) return;
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 8000); // Increased time to allow reading
     return () => clearInterval(timer);
   }, [slides.length]);
 
   const handleShopNow = () => {
     const currentSlide = slides[activeSlide];
-    if (currentSlide.type === 'holi') {
-      navigate(currentSlide.ctaLink);
-    } else {
-      navigate("/all-products");
-    }
+    navigate(currentSlide.ctaLink || "/all-products");
   };
   const handleExplore = () => navigate("/new-arrivals");
 
@@ -65,9 +91,11 @@ function Hero() {
   }, [activeSlide]);
 
   return (
-    <section className={`hero-modern ${slides[activeSlide]?.type === 'holi' ? 'holi-hero' : ''}`}>
+    <section className={`hero-modern ${slides[activeSlide]?.type === 'holi' ? 'holi-hero' : ''} ${slides[activeSlide]?.type === 'flyhigh' ? 'flyhigh-hero' : ''}`}>
       {/* Decorative background elements */}
-      <div className="modern-bg-text">{slides[activeSlide]?.type === 'holi' ? 'HOLI' : 'UNIQUE'}</div>
+      <div className="modern-bg-text">
+        {slides[activeSlide]?.type === 'holi' ? 'HOLI' : slides[activeSlide]?.type === 'flyhigh' ? 'FLYHIGH' : 'UNIQUE'}
+      </div>
 
       {slides[activeSlide]?.type === 'holi' && (
         <div className={`holi-festival-container ${hasSplashed ? 'festival-active' : ''}`}>
@@ -109,6 +137,26 @@ function Hero() {
         </div>
       )}
 
+      {/* FlyHigh Background Effect */}
+      {slides[activeSlide]?.type === 'flyhigh' && (
+        <div className="flyhigh-bg-effect">
+          <div className="spark-particle spark-1"></div>
+          <div className="spark-particle spark-2"></div>
+          <div className="glow-orb"></div>
+        </div>
+      )}
+
+      {slides.length > 1 && (
+        <>
+          <button className="slider-nav-btn prev-btn" onClick={prevSlide} aria-label="Previous Slide">
+            <FaChevronLeft />
+          </button>
+          <button className="slider-nav-btn next-btn" onClick={nextSlide} aria-label="Next Slide">
+            <FaChevronRight />
+          </button>
+        </>
+      )}
+
       <div className="hero-modern-container">
         <div className="hero-content-wrapper">
           {/* Text Content Side */}
@@ -123,12 +171,24 @@ function Hero() {
               <span className="title-bottom">{slides[activeSlide]?.subtitle}</span>
             </h1>
 
-            <p className="hero-description-text">
-              {slides[activeSlide]?.description}
-            </p>
+            {slides[activeSlide]?.type === 'flyhigh' && slides[activeSlide]?.pricing ? (
+              <div className="flyhigh-pricing-grid">
+                {slides[activeSlide].pricing.map((item, index) => (
+                  <div key={index} className="fh-price-card">
+                    <span className="fh-label">{item.label}</span>
+                    <span className="fh-price">{item.price}</span>
+                    <span className="fh-detail">{item.detail}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="hero-description-text">
+                {slides[activeSlide]?.description}
+              </p>
+            )}
 
             <div className="hero-actions-modern">
-              <button className={`btn-modern-primary ${slides[activeSlide]?.type === 'holi' ? 'btn-holi' : ''}`} onClick={handleShopNow}>
+              <button className={`btn-modern-primary ${slides[activeSlide]?.type === 'holi' ? 'btn-holi' : ''} ${slides[activeSlide]?.type === 'flyhigh' ? 'btn-flyhigh' : ''}`} onClick={handleShopNow}>
                 {slides[activeSlide]?.ctaLabel || "SHOP NOW"}
                 <div className="btn-fill"></div>
               </button>
@@ -163,37 +223,50 @@ function Hero() {
                         className={`sub-slide-img ${holiImageIndex === imgIdx ? 'visible' : ''}`}
                       />
                     ))
+                  ) : slide.type === 'flyhigh' ? (
+                    slide.images.map((img, imgIdx) => (
+                      <img
+                        key={imgIdx}
+                        src={img}
+                        alt={`${slide.title} ${imgIdx}`}
+                        className={`sub-slide-img ${flyHighIndex === imgIdx ? 'visible' : ''}`}
+                      />
+                    ))
                   ) : (
                     <img src={slide.image} alt={slide.title} />
                   )}
                 </div>
               ))}
 
-              {/* Floating DNA Badge - Unique Element */}
-              <div className="unique-dna-badge">
-                <div className="dna-item">
-                  <span className="dot pulse-red"></span>
-                  <div className="dna-text">
-                    <span className="label">Crafted with</span>
-                    <span className="value">Pure Passion</span>
-                  </div>
-                </div>
-                <div className="dna-divider"></div>
-                <div className="dna-item">
-                  <span className="dot orange rotate-soft"></span>
-                  <div className="dna-text">
-                    <span className="label">Edition</span>
-                    <span className="value">Holi 特别</span>
-                  </div>
-                </div>
-              </div>
 
+              {/* Floating DNA Badge - Unique Element - Only for Holi */}
+              {slides[activeSlide]?.type === 'holi' && (
+                <>
+                  <div className="unique-dna-badge">
+                    <div className="dna-item">
+                      <span className="dot pulse-red"></span>
+                      <div className="dna-text">
+                        <span className="label">Crafted with</span>
+                        <span className="value">Pure Passion</span>
+                      </div>
+                    </div>
+                    <div className="dna-divider"></div>
+                    <div className="dna-item">
+                      <span className="dot orange rotate-soft"></span>
+                      <div className="dna-text">
+                        <span className="label">Edition</span>
+                        <span className="value">Holi 特别</span>
+                      </div>
+                    </div>
+                  </div>
 
-              <div className="hero-price-tag bubble-3d">
-                <span className="suffix">Pichkari from</span>
-                <span className="amount">₹99</span>
-                <span className="suffix">Shop Fast!</span>
-              </div>
+                  <div className="hero-price-tag bubble-3d">
+                    <span className="suffix">Pichkari from</span>
+                    <span className="amount">₹99</span>
+                    <span className="suffix">Shop Fast!</span>
+                  </div>
+                </>
+              )}
             </div>
 
           </div>
