@@ -336,28 +336,278 @@
     }
 }
 
-.flyhigh-promo-card {
-    margin-top: 2rem;
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* --- Inline Wholesale Grid --- */
+
+.inline-wholesale-grid {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #eee;
 }
 
-.flyhigh-promo-card:hover {
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.grid-item span {
+    font-size: 0.6rem;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.grid-item b {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.grid-item small {
+    font-size: 0.55rem;
+    color: #aaa;
+}
+
+.grid-item.highlight b {
+    color: #FF0080;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.papers .grid-item.highlight b {
+    color: #00D4FF;
+}
+
+.wholesale-global-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    padding-bottom: 40px;
+}
+
+.bulk-inquiry-btn {
+    padding: 16px 40px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.bulk-inquiry-btn:hover {
+    background: #FF0080;
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 35px rgba(255, 0, 128, 0.2);
 }
 
-.flyhigh-promo-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
+.btn-icon {
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
 }
 
-.flyhigh-promo-card h3 {
-    margin-top: 1rem;
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .inline-wholesale-grid {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .grid-item {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 4px 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .grid-item:last-child {
+        border-bottom: none;
+    }
+}
+
+/* --- FlyHigh Wholesale Redesign --- */
+
+.flyhigh-wholesale-redesign {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    animation: slideUpFade 0.8s ease-out;
+}
+
+.wholesale-offers-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wholesale-offer-card {
+    background: #111;
+    border-radius: 24px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.wholesale-offer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.wholesale-offer-card.lighters::before {
+    background: linear-gradient(to bottom, #FF0080, #7928CA);
+}
+
+.wholesale-offer-card.papers::before {
+    background: linear-gradient(to bottom, #00D4FF, #0055FF);
+}
+
+.wholesale-offer-card:hover {
+    transform: translateX(10px);
+    border-color: rgba(255, 255, 255, 0.1);
+    background: #161616;
+}
+
+.card-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.offer-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.offer-item {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 10px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all 0.3s ease;
+    align-items: center;
+}
+
+.offer-item.active {
+    background: rgba(255, 0, 128, 0.05);
+    border-color: rgba(255, 0, 128, 0.2);
+}
+
+.lighters .offer-item.active {
+    border-color: rgba(255, 0, 128, 0.3);
+}
+
+.papers .offer-item.active {
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+.offer-label {
+    font-size: 0.6rem;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.offer-value {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 3px;
+}
+
+.offer-meta {
+    font-size: 0.6rem;
+    color: #444;
     font-weight: 600;
-    color: #1a1a1a;
+}
+
+.active .offer-value {
+    color: #FF0080;
+}
+
+.papers .active .offer-value {
+    color: #00D4FF;
+}
+
+@media (max-width: 600px) {
+    .offer-row {
+        grid-template-columns: 1fr;
+    }
+
+    .offer-item {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 12px 20px;
+    }
+
+    .offer-label {
+        margin-bottom: 0;
+    }
+
+    .offer-value {
+        margin-bottom: 0;
+        font-size: 1.1rem;
+    }
 }

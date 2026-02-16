@@ -271,7 +271,6 @@ const AllProducts = () => {
     { id: "Unique Speaker", name: "Unique Speaker", icon: <FaBoxOpen /> },
     { id: "Lamps", name: "Lamps", icon: <FaCouch /> },
     { id: "Humidifier", name: "Humidifier", icon: <FaGift /> },
-    { id: "Holi Special", name: "Holi Special", icon: <FaTags /> },
     { id: "FlyHigh", name: "FlyHigh", icon: <FaFire /> },
   ];
 
@@ -427,7 +426,7 @@ const AllProducts = () => {
                 ))}
               </div>
               <div className="products-subtitle">
-                Discover our curated selection of premium fashion items designed for style and comfort
+                Discover our curated selection of premium home & lifestyle products designed for style and comfort
               </div>
               <div className="products-divider"></div>
             </div>
@@ -504,7 +503,7 @@ const AllProducts = () => {
             ))}
           </div>
           <div className="products-subtitle">
-            Discover our curated selection of premium fashion items designed for style and comfort
+            Discover our curated selection of premium home & lifestyle products designed for style and comfort
           </div>
           <div className="products-divider"></div>
         </div>

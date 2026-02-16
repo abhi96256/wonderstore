@@ -4,7 +4,8 @@
     position: relative;
     min-height: 100vh;
     background: #ffffff;
-    padding: 100px 5% 50px;
+    padding: 60px 5% 50px;
+    margin-top: 110px;
     overflow: hidden;
     font-family: 'Outfit', sans-serif;
     display: flex;
@@ -1518,6 +1519,73 @@
     color: black;
     border-color: #ffaa00;
     box-shadow: 0 0 20px rgba(255, 170, 0, 0.5);
+}
+
+/* Paper Roll Hero Theme */
+.paperroll-hero {
+    background: radial-gradient(circle at 70% 50%, #1a2f1a 0%, #0a0f0a 100%);
+    color: white;
+}
+
+.paperroll-hero .modern-bg-text {
+    color: rgba(154, 211, 194, 0.03);
+}
+
+.paperroll-hero .tag-text {
+    color: #9AD3C2;
+    text-shadow: 0 0 10px rgba(154, 211, 194, 0.3);
+}
+
+.paperroll-hero .line {
+    background: #9AD3C2;
+}
+
+.paperroll-hero .title-top {
+    color: white;
+}
+
+.paperroll-hero .title-bottom {
+    -webkit-text-stroke: 1.5px rgba(154, 211, 194, 0.5);
+    color: transparent;
+}
+
+.btn-paperroll {
+    background: #9AD3C2 !important;
+    color: #0a0f0a !important;
+    border: none;
+}
+
+.btn-paperroll:hover {
+    box-shadow: 0 0 20px rgba(154, 211, 194, 0.4);
+    transform: translateY(-5px);
+}
+
+.paperroll-hero .main-image-frame {
+    background: #111;
+    box-shadow: 0 40px 100px rgba(154, 211, 194, 0.1);
+}
+
+.paperroll-hero .btn-modern-text {
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(154, 211, 194, 0.3);
+}
+
+.paperroll-hero .btn-modern-text:hover {
+    color: #9AD3C2;
+    border-bottom-color: #9AD3C2;
+}
+
+.paperroll-hero .slider-nav-btn {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.paperroll-hero .slider-nav-btn:hover {
+    background: #9AD3C2;
+    color: black;
+    border-color: #9AD3C2;
+    box-shadow: 0 0 20px rgba(154, 211, 194, 0.5);
 }
 
 @media (max-width: 768px) {

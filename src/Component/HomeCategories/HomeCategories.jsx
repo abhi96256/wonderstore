@@ -9,7 +9,7 @@ import { FaArrowRight } from 'react-icons/fa';
 const HomeCategories = () => {
     const navigate = useNavigate();
     const [categoryData, setCategoryData] = useState({
-        "Holi Special": [],
+        "FlyHigh": [],
         "Unique Speaker": [],
         "Lamps": [],
         "Humidifier": []
@@ -19,7 +19,7 @@ const HomeCategories = () => {
     useEffect(() => {
         const fetchCategoryProducts = async () => {
             try {
-                const categories = ["Holi Special", "FlyHigh", "Unique Speaker", "Lamps", "Humidifier"];
+                const categories = ["FlyHigh", "Unique Speaker", "Lamps", "Humidifier"];
                 const newData = {};
 
                 for (const cat of categories) {
@@ -81,27 +81,8 @@ const HomeCategories = () => {
                             Explore All <FaArrowRight />
                         </button>
 
-                        {category === "Holi Special" && (
-                            <div className="wholesale-card">
-                                <div className="wholesale-badge">BUSINESS INQUIRY</div>
-                                <p>
-                                    Looking to start your own <b>Pichkari business</b> or need <b>Wholesale supplies</b>? Contact us for highly affordable rates!
-                                </p>
-                                <button className="wholesale-contact-btn" onClick={() => navigate('/contact')}>
-                                    Contact Us for Wholesale
-                                </button>
-                            </div>
-                        )}
 
-                        {category === "FlyHigh" && (
-                            <div className="flyhigh-promo-card" onClick={() => navigate('/all-products?category=FlyHigh')} style={{ cursor: 'pointer', marginTop: '20px' }}>
-                                <img src="/image.png" alt="FlyHigh Premium Lighters" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }} />
-                                <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                                    <h3 style={{ fontSize: '1.2rem', marginBottom: '5px' }}>Premium Collection</h3>
-                                    <p style={{ fontSize: '0.9rem', color: '#666' }}>Explore the full range of FlyHigh lighters.</p>
-                                </div>
-                            </div>
-                        )}
+
                     </div>
 
                     <div className="category-grid">
@@ -121,6 +102,47 @@ const HomeCategories = () => {
                                     <div className="home-product-details">
                                         <h3 className="home-product-name">{product.product_name}</h3>
                                         <p className="home-product-price">₹{Number(product.mrp).toLocaleString()}</p>
+
+                                        {/* Inline Wholesale Pricing for FlyHigh category */}
+                                        {category === "FlyHigh" && (
+                                            <div className={`inline-wholesale-grid ${product.product_name.toLowerCase().includes('lighter') ? 'lighters' : 'papers'}`}>
+                                                {product.product_name.toLowerCase().includes('lighter') ? (
+                                                    <>
+                                                        <div className="grid-item">
+                                                            <span>Master Box</span>
+                                                            <b>₹7,000</b>
+                                                            <small>1000 Pcs</small>
+                                                        </div>
+                                                        <div className="grid-item">
+                                                            <span>Per Box</span>
+                                                            <b>₹700</b>
+                                                            <small>100 Pcs</small>
+                                                        </div>
+                                                        <div className="grid-item highlight">
+                                                            <span>Per Piece</span>
+                                                            <b>₹7</b>
+                                                        </div>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <div className="grid-item">
+                                                            <span>Master Box</span>
+                                                            <b>₹5,000</b>
+                                                            <small>50 Books</small>
+                                                        </div>
+                                                        <div className="grid-item">
+                                                            <span>Per Box</span>
+                                                            <b>₹1,000</b>
+                                                            <small>10 Books</small>
+                                                        </div>
+                                                        <div className="grid-item highlight">
+                                                            <span>Per Piece</span>
+                                                            <b>₹120</b>
+                                                        </div>
+                                                    </>
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             ))
@@ -132,6 +154,13 @@ const HomeCategories = () => {
                     </div>
                 </div>
             ))}
+
+            <div className="wholesale-global-action">
+                <button className="bulk-inquiry-btn" onClick={() => window.open('https://wa.me/91XXXXXXXXXX', '_blank')}>
+                    <span className="btn-icon">⚡</span>
+                    Connect for Bulk Wholesale Inquiry
+                </button>
+            </div>
         </section>
     );
 };

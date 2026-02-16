@@ -81,7 +81,7 @@ const NewArrivals = () => {
         // Get products added in the last 30 days as new arrivals
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-        const allowedCategories = ["Unique Speaker", "Lamps", "Humidifier", "Holi Special", "FlyHigh"];
+        const allowedCategories = ["Unique Speaker", "Lamps", "Humidifier", "FlyHigh"];
 
         const newProducts = products.filter(product => {
           const hasImage = product.image && product.image.trim() !== '';
@@ -172,7 +172,7 @@ const NewArrivals = () => {
   }, []); // Empty dependency array since we only want this to run once
 
   // Dynamically generate categories from newArrivals
-  const categories = ['all', 'Unique Speaker', 'Lamps', 'Humidifier', 'Holi Special', 'FlyHigh'];
+  const categories = ['all', 'Unique Speaker', 'Lamps', 'Humidifier', 'FlyHigh'];
 
   const filteredProducts = activeTab === "all"
     ? newArrivals
@@ -570,11 +570,10 @@ const NewArrivals = () => {
                 ? "Discover our newest unique speakers, from elegant designs to high-fidelity audio essentials."
                 : activeTab === "Lamps"
                   ? "Illuminate your space with our just-arrived lamps, featuring modern and artistic designs."
-                  : activeTab === "Holi Special"
-                    ? "Celebrate the festival of colors with our exclusive Holi Special collection, featuring herbal gulal and festive essentials."
-                    : activeTab === "FlyHigh"
-                      ? "Explore our premium range of FlyHigh lighters, combining sleek design with reliable performance."
-                      : "Explore our collection of smart humidifiers, perfect for maintaining comfort and wellness in your home."}
+
+                  : activeTab === "FlyHigh"
+                    ? "Explore our premium range of FlyHigh lighters and rolling papers, combining sleek design with reliable performance."
+                    : "Explore our collection of smart humidifiers, perfect for maintaining comfort and wellness in your home."}
           </p>
         </div>
 

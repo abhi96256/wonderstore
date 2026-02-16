@@ -7,17 +7,15 @@ import OptimizedImage from "../OptimizedImage";
 
 function Hero() {
   const navigate = useNavigate();
-  const [showBanner, setShowBanner] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [holiImageIndex, setHoliImageIndex] = useState(0);
-  const [flyHighIndex, setFlyHighIndex] = useState(0);
+  const [mediaIndex, setMediaIndex] = useState(0);
 
   const slides = [
     {
       title: "FLY HIGH",
       subtitle: "PREMIUM LIGHTERS",
       description: "Experience the spark of innovation with our premium lighter collection. Sleek design, reliable flame.",
-      images: ["/image.png"],
+      images: ["/image.png", "/ligher video.mp4"],
       tag: "BRAND NEW ARRIVAL",
       type: "flyhigh",
       pricing: [
@@ -29,48 +27,47 @@ function Hero() {
       ctaLink: "/all-products?category=FlyHigh"
     },
     {
-      title: "CELEBRATE",
-      subtitle: "FESTIVAL OF COLORS",
-      description: "Discover our exclusive range of ultra-unique pichkaris. You won't find these one-of-a-kind designs anywhere else!",
-      images: [
-        "/holi/IMG_2024.JPG.jpeg",
-        "/holi/IMG_2017.JPG.jpeg",
-        "/holi/IMG_2024.JPG.jpeg",
+      title: "PURE ROLL",
+      subtitle: "PREMIUM PAPERS",
+      description: "Enhance your ritual with our ultra-thin organic rolling papers. Crafted for a smooth, slow, and consistent burn.",
+      images: ["/paper.mp4", "/roll.jpeg"],
+      tag: "LATEST COLLECTION",
+      type: "paperroll",
+      pricing: [
+        { label: "Master Box", price: "₹5000", detail: "50 Booklets" },
+        { label: "Per Box", price: "₹1000", detail: "10 Booklets" },
+        { label: "Per Piece", price: "₹120", detail: "Single Booklet" }
       ],
-      tag: "HOLI SPECIAL 2026",
-      type: "holi",
-      ctaLabel: "EXPLORE HOLI SPECIAL",
-      ctaLink: "/all-products?category=Holi Special"
+      ctaLabel: "EXPLORE PAPERS",
+      ctaLink: "/all-products?category=FlyHigh"
     }
   ];
 
   const nextSlide = () => {
     setActiveSlide((prev) => (prev + 1) % slides.length);
+    setMediaIndex(0); // Reset media index on slide change
   };
 
   const prevSlide = () => {
     setActiveSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setMediaIndex(0); // Reset media index on slide change
   };
 
   useEffect(() => {
-    if (slides[activeSlide]?.type === 'holi') {
-      const imgTimer = setInterval(() => {
-        setHoliImageIndex((prev) => (prev + 1) % slides[activeSlide].images.length);
-      }, 3000); // Change image every 3 seconds
-      return () => clearInterval(imgTimer);
-    } else if (slides[activeSlide]?.type === 'flyhigh') {
-      const fhTimer = setInterval(() => {
-        setFlyHighIndex((prev) => (prev + 1) % slides[activeSlide].images.length);
-      }, 3000);
-      return () => clearInterval(fhTimer);
+    const currentMedia = slides[activeSlide]?.images;
+    if (currentMedia && currentMedia.length > 1) {
+      const timer = setInterval(() => {
+        setMediaIndex((prev) => (prev + 1) % currentMedia.length);
+      }, 6000); // Change media every 6 seconds
+      return () => clearInterval(timer);
     }
   }, [activeSlide, slides]);
 
   useEffect(() => {
     if (slides.length <= 1) return;
     const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % slides.length);
-    }, 8000); // Increased time to allow reading
+      nextSlide();
+    }, 15000); // Change main slide every 15 seconds
     return () => clearInterval(timer);
   }, [slides.length]);
 
@@ -80,64 +77,14 @@ function Hero() {
   };
   const handleExplore = () => navigate("/new-arrivals");
 
-  const [hasSplashed, setHasSplashed] = useState(false);
-
-  useEffect(() => {
-    if (slides[activeSlide]?.type === 'holi') {
-      setHasSplashed(false);
-      const splashTimer = setTimeout(() => setHasSplashed(true), 100);
-      return () => clearTimeout(splashTimer);
-    }
-  }, [activeSlide]);
-
   return (
-    <section className={`hero-modern ${slides[activeSlide]?.type === 'holi' ? 'holi-hero' : ''} ${slides[activeSlide]?.type === 'flyhigh' ? 'flyhigh-hero' : ''}`}>
+    <section className={`hero-modern ${slides[activeSlide]?.type === 'flyhigh' ? 'flyhigh-hero' : ''} ${slides[activeSlide]?.type === 'paperroll' ? 'paperroll-hero' : ''}`}>
       {/* Decorative background elements */}
       <div className="modern-bg-text">
-        {slides[activeSlide]?.type === 'holi' ? 'HOLI' : slides[activeSlide]?.type === 'flyhigh' ? 'FLYHIGH' : 'UNIQUE'}
+        {slides[activeSlide]?.type === 'flyhigh' ? 'FLYHIGH' : slides[activeSlide]?.type === 'paperroll' ? 'ROLLS' : 'UNIQUE'}
       </div>
 
-      {slides[activeSlide]?.type === 'holi' && (
-        <div className={`holi-festival-container ${hasSplashed ? 'festival-active' : ''}`}>
-          {/* Initial Powder Fly Effect - Starts First */}
-          <div className="powder-fly powder-1"></div>
-          <div className="powder-fly powder-2"></div>
-          <div className="powder-fly powder-3"></div>
-
-          {/* 3 Realistic Balloons - Appear after powder */}
-          <div className="holi-balloon balloon-1">
-            <div className="balloon-shine"></div>
-            <div className="balloon-knot"></div>
-            <div className="balloon-string"></div>
-          </div>
-          <div className="holi-balloon balloon-2">
-            <div className="balloon-shine"></div>
-            <div className="balloon-knot"></div>
-            <div className="balloon-string"></div>
-          </div>
-          <div className="holi-balloon balloon-3">
-            <div className="balloon-shine"></div>
-            <div className="balloon-knot"></div>
-            <div className="balloon-string"></div>
-          </div>
-
-          {/* Liquid Splatters that stay after popping */}
-          <div className="persisting-splat splat-1"></div>
-          <div className="persisting-splat splat-2"></div>
-          <div className="persisting-splat splat-3"></div>
-          <div className="persisting-splat splat-4"></div>
-
-          {/* Splatter Blobs */}
-          <div className="liquid-blob blob-1"></div>
-          <div className="liquid-blob blob-2"></div>
-
-          {/* Long Drips */}
-          <div className="liquid-drip drip-1"></div>
-          <div className="liquid-drip drip-2"></div>
-        </div>
-      )}
-
-      {/* FlyHigh Background Effect */}
+      {/* Background Effects */}
       {slides[activeSlide]?.type === 'flyhigh' && (
         <div className="flyhigh-bg-effect">
           <div className="spark-particle spark-1"></div>
@@ -171,7 +118,7 @@ function Hero() {
               <span className="title-bottom">{slides[activeSlide]?.subtitle}</span>
             </h1>
 
-            {slides[activeSlide]?.type === 'flyhigh' && slides[activeSlide]?.pricing ? (
+            {slides[activeSlide]?.pricing ? (
               <div className="flyhigh-pricing-grid">
                 {slides[activeSlide].pricing.map((item, index) => (
                   <div key={index} className="fh-price-card">
@@ -188,7 +135,7 @@ function Hero() {
             )}
 
             <div className="hero-actions-modern">
-              <button className={`btn-modern-primary ${slides[activeSlide]?.type === 'holi' ? 'btn-holi' : ''} ${slides[activeSlide]?.type === 'flyhigh' ? 'btn-flyhigh' : ''}`} onClick={handleShopNow}>
+              <button className={`btn-modern-primary ${slides[activeSlide]?.type === 'flyhigh' ? 'btn-flyhigh' : ''} ${slides[activeSlide]?.type === 'paperroll' ? 'btn-paperroll' : ''}`} onClick={handleShopNow}>
                 {slides[activeSlide]?.ctaLabel || "SHOP NOW"}
                 <div className="btn-fill"></div>
               </button>
@@ -206,7 +153,7 @@ function Hero() {
           {/* Image Side - Ultra Premium Design */}
           <div className="hero-image-side">
             <div className="main-image-frame">
-              {/* Decorative Splash Background with Parallax effect potentially */}
+              {/* Decorative Splash Background */}
               <div className="decorative-splash"></div>
 
               {slides.map((slide, index) => (
@@ -214,73 +161,50 @@ function Hero() {
                   key={index}
                   className={`slide-image ${activeSlide === index ? 'active' : ''}`}
                 >
-                  {slide.type === 'holi' ? (
-                    slide.images.map((img, imgIdx) => (
-                      <img
-                        key={imgIdx}
-                        src={img}
-                        alt={`${slide.title} ${imgIdx}`}
-                        className={`sub-slide-img ${holiImageIndex === imgIdx ? 'visible' : ''}`}
-                      />
-                    ))
-                  ) : slide.type === 'flyhigh' ? (
-                    slide.images.map((img, imgIdx) => (
-                      <img
-                        key={imgIdx}
-                        src={img}
-                        alt={`${slide.title} ${imgIdx}`}
-                        className={`sub-slide-img ${flyHighIndex === imgIdx ? 'visible' : ''}`}
-                      />
-                    ))
+                  {slide.images ? (
+                    slide.images.map((media, mIdx) => {
+                      const isVideo = media.toLowerCase().endsWith('.mp4') || media.toLowerCase().endsWith('.webm');
+                      return isVideo ? (
+                        <video
+                          key={mIdx}
+                          src={media}
+                          className={`sub-slide-img ${mediaIndex === mIdx ? 'visible' : ''}`}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                        />
+                      ) : (
+                        <img
+                          key={mIdx}
+                          src={media}
+                          alt={`${slide.title} ${mIdx}`}
+                          className={`sub-slide-img ${mediaIndex === mIdx ? 'visible' : ''}`}
+                        />
+                      );
+                    })
                   ) : (
                     <img src={slide.image} alt={slide.title} />
                   )}
                 </div>
               ))}
-
-
-              {/* Floating DNA Badge - Unique Element - Only for Holi */}
-              {slides[activeSlide]?.type === 'holi' && (
-                <>
-                  <div className="unique-dna-badge">
-                    <div className="dna-item">
-                      <span className="dot pulse-red"></span>
-                      <div className="dna-text">
-                        <span className="label">Crafted with</span>
-                        <span className="value">Pure Passion</span>
-                      </div>
-                    </div>
-                    <div className="dna-divider"></div>
-                    <div className="dna-item">
-                      <span className="dot orange rotate-soft"></span>
-                      <div className="dna-text">
-                        <span className="label">Edition</span>
-                        <span className="value">Holi 特别</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="hero-price-tag bubble-3d">
-                    <span className="suffix">Pichkari from</span>
-                    <span className="amount">₹99</span>
-                    <span className="suffix">Shop Fast!</span>
-                  </div>
-                </>
-              )}
             </div>
-
           </div>
         </div>
       </div>
 
-      {/* Slide Navigation Dots - Only show if multiple slides */}
+      {/* Slide Navigation Dots */}
       {slides.length > 1 && (
         <div className="slide-nav-dots">
           {slides.map((_, i) => (
             <div
               key={i}
               className={`dot ${activeSlide === i ? 'active' : ''}`}
-              onClick={() => setActiveSlide(i)}
+              onClick={() => {
+                setActiveSlide(i);
+                setMediaIndex(0);
+              }}
             ></div>
           ))}
         </div>
