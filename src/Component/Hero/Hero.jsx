@@ -29,14 +29,14 @@ function Hero() {
     {
       title: "PURE ROLL",
       subtitle: "PREMIUM PAPERS",
-      description: "Enhance your ritual with our ultra-thin organic rolling papers. Crafted for a smooth, slow, and consistent burn.",
+      description: "Enhance your ritual with our premium pre-rolled cones. Perfectly crafted for a smooth, slow, and consistent burn every time.",
       images: ["/paper.mp4", "/roll.jpeg"],
       tag: "LATEST COLLECTION",
       type: "paperroll",
       pricing: [
-        { label: "Master Box", price: "₹5000", detail: "50 Booklets" },
-        { label: "Per Box", price: "₹1000", detail: "10 Booklets" },
-        { label: "Per Piece", price: "₹120", detail: "Single Booklet" }
+        { label: "Master Box", price: "₹4,500", detail: "12 Boxes" },
+        { label: "Per Box", price: "₹400", detail: "63 Cones" },
+        { label: "Bulk Inquiry", price: "Best Price", detail: "Wholesale" }
       ],
       ctaLabel: "EXPLORE PAPERS",
       ctaLink: "/all-products?category=FlyHigh"

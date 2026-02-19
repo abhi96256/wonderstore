@@ -127,17 +127,17 @@ const HomeCategories = () => {
                                                     <>
                                                         <div className="grid-item">
                                                             <span>Master Box</span>
-                                                            <b>₹5,000</b>
-                                                            <small>50 Books</small>
+                                                            <b>₹4,500</b>
+                                                            <small>12 Boxes</small>
                                                         </div>
                                                         <div className="grid-item">
                                                             <span>Per Box</span>
-                                                            <b>₹1,000</b>
-                                                            <small>10 Books</small>
+                                                            <b>₹400</b>
+                                                            <small>63 Cones</small>
                                                         </div>
                                                         <div className="grid-item highlight">
-                                                            <span>Per Piece</span>
-                                                            <b>₹120</b>
+                                                            <span>Best Deal</span>
+                                                            <b>Bulk</b>
                                                         </div>
                                                     </>
                                                 )}
