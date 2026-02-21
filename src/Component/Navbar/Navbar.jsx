@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Navbar.css";
-import { FaSearch, FaShoppingCart, FaHeart, FaBars, FaTimes } from "react-icons/fa";
-import { FiShoppingBag } from "react-icons/fi";
+import { FaSearch, FaShoppingCart, FaHeart, FaBars, FaTimes, FaHome, FaBoxOpen, FaStar, FaPhoneAlt, FaInfoCircle, FaTruck, FaUser, FaSignOutAlt, FaUserShield } from "react-icons/fa";
+import { FiShoppingBag, FiPackage } from "react-icons/fi";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext.jsx";
 import { useWishlist } from "../../context/WishlistContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 import UserDashboard from "../UserDashboard/UserDashboard";
 import { useAuthRedirect } from '../../utils/authUtils';
 import LoginPrompt from "../../components/LoginPrompt/LoginPrompt";
@@ -14,6 +15,7 @@ import { collection, getDocs } from 'firebase/firestore';
 function Navbar() {
   const { getCartCount } = useCart();
   const { wishlist } = useWishlist();
+  const { isAuthenticated, logout, user } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
@@ -330,108 +332,131 @@ function Navbar() {
             <UserDashboard />
           </div>
         </div>
-
-        {/* Mobile Search Bar */}
-        {isMobile && isSearchOpen && (
-          <div className="mobile-search-container">
-            <button
-              className="mobile-search-close"
-              onClick={() => {
-                setIsSearchOpen(false);
-                setSearchQuery("");
-                setShowDropdown(false);
-              }}
-              aria-label="Close search"
-            >
-              <FaTimes />
-            </button>
-            <div className="search-bar mobile-search" ref={searchRef}>
-              <form onSubmit={handleSearch}>
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                    setShowDropdown(true);
-                  }}
-                  onFocus={() => {
-                    if (searchQuery) setShowDropdown(true);
-                  }}
-                  autoFocus
-                />
-                <button type="submit" className="search-btn">
-                  <FaSearch size={14} />
-                </button>
-              </form>
-
-              {/* Mobile Search Results Dropdown */}
-              {showDropdown && searchQuery && (
-                <div className="search-results-dropdown mobile-search-dropdown">
-                  {filteredProducts.map((product) => (
-                    <div
-                      key={product.id}
-                      className="search-result-item"
-                      onClick={() => {
-                        navigate(`/product/${product.id}`);
-                        setShowDropdown(false);
-                        setSearchQuery("");
-                        setIsSearchOpen(false);
-                      }}
-                    >
-                      <img
-                        src={product.image ? '/' + product.image.split(',')[0].trim() : ''}
-                        alt={product.name}
-                        className="search-result-image"
-                      />
-                      <div className="search-result-info">
-                        <div className="search-result-name">{product.product_name}</div>
-                        <div className="search-result-price">₹{product.mrp}</div>
-                      </div>
-                    </div>
-                  ))}
-
-                  {filteredProducts.length === 0 && (
-                    <div className="no-results">No products found</div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* Mobile Menu Overlay */}
-        {isMobile && isMenuOpen && (
-          <div className="mobile-menu-overlay" onClick={() => setIsMenuOpen(false)}>
-            <div className="mobile-menu-content" onClick={(e) => e.stopPropagation()}>
-              <div className="mobile-menu-header">
-                <h3>Menu</h3>
-                <button
-                  className="mobile-menu-close"
-                  onClick={() => setIsMenuOpen(false)}
-                  aria-label="Close menu"
-                >
-                  <FaTimes />
-                </button>
-              </div>
-              <nav className="mobile-nav">
-                <NavLink to="/new-arrivals" className="mobile-nav-link" onClick={handleMobileNavClick}>
-                  New Arrivals
-                </NavLink>
-                <NavLink to="/all-products" className="mobile-nav-link" onClick={handleMobileNavClick}>
-                  All Products
-                </NavLink>
-                <NavLink to="/featured-stories" className="mobile-nav-link" onClick={handleMobileNavClick}>
-                  Featured Stories
-                </NavLink>
-                <NavLink to="/contact" className="mobile-nav-link" onClick={handleMobileNavClick}>
-                  Contact Us
-                </NavLink>
-              </nav>
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Search Bar */}
+      {isMobile && isSearchOpen && (
+        <div className="mobile-search-container">
+          <button
+            className="mobile-search-close"
+            onClick={() => {
+              setIsSearchOpen(false);
+              setSearchQuery("");
+              setShowDropdown(false);
+            }}
+            aria-label="Close search"
+          >
+            <FaTimes />
+          </button>
+          <div className="search-bar mobile-search" ref={searchRef}>
+            <form onSubmit={handleSearch}>
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setShowDropdown(true);
+                }}
+                onFocus={() => {
+                  if (searchQuery) setShowDropdown(true);
+                }}
+                autoFocus
+              />
+              <button type="submit" className="search-btn">
+                <FaSearch size={14} />
+              </button>
+            </form>
+
+            {/* Mobile Search Results Dropdown */}
+            {showDropdown && searchQuery && (
+              <div className="search-results-dropdown mobile-search-dropdown">
+                {filteredProducts.map((product) => (
+                  <div
+                    key={product.id}
+                    className="search-result-item"
+                    onClick={() => {
+                      navigate(`/product/${product.id}`);
+                      setShowDropdown(false);
+                      setSearchQuery("");
+                      setIsSearchOpen(false);
+                    }}
+                  >
+                    <img
+                      src={product.image ? '/' + product.image.split(',')[0].trim() : ''}
+                      alt={product.name}
+                      className="search-result-image"
+                    />
+                    <div className="search-result-info">
+                      <div className="search-result-name">{product.product_name}</div>
+                      <div className="search-result-price">₹{product.mrp}</div>
+                    </div>
+                  </div>
+                ))}
+
+                {filteredProducts.length === 0 && (
+                  <div className="no-results">No products found</div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Menu Overlay */}
+      {isMobile && isMenuOpen && (
+        <div className="mobile-menu-overlay" onClick={() => setIsMenuOpen(false)}>
+          <div className="mobile-menu-content" onClick={(e) => e.stopPropagation()}>
+            <div className="mobile-menu-header">
+              <div className="mobile-logo">
+                <img src="/logo.png" alt="Logo" />
+              </div>
+              <button
+                className="mobile-menu-close"
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <FaTimes />
+              </button>
+            </div>
+
+            <nav className="mobile-nav">
+              <NavLink to="/new-arrivals" className="mobile-nav-link" onClick={handleMobileNavClick}>
+                <FaStar className="nav-icon" /> New Arrivals
+              </NavLink>
+              <NavLink to="/all-products" className="mobile-nav-link" onClick={handleMobileNavClick}>
+                <FaBoxOpen className="nav-icon" /> All Products
+              </NavLink>
+              <NavLink to="/featured-stories" className="mobile-nav-link" onClick={handleMobileNavClick}>
+                <FiPackage className="nav-icon" /> Featured Stories
+              </NavLink>
+              <NavLink to="/contact" className="mobile-nav-link" onClick={handleMobileNavClick}>
+                <FaPhoneAlt className="nav-icon" /> Contact Us
+              </NavLink>
+
+              {isAuthenticated ? (
+                <button
+                  className="mobile-nav-link logout-link"
+                  onClick={() => {
+                    logout();
+                    handleMobileNavClick();
+                  }}
+                >
+                  <FaSignOutAlt className="nav-icon" /> Logout
+                </button>
+              ) : (
+                <NavLink to="/login" className="mobile-nav-link" onClick={handleMobileNavClick}>
+                  <FaUser className="nav-icon" /> Login / Sign Up
+                </NavLink>
+              )}
+            </nav>
+
+            <div className="mobile-menu-footer">
+              <p>© 2026 Wonder Cart. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {showLoginPrompt && (
         <div className="login-prompt-overlay" onClick={handleCloseLoginPrompt}>

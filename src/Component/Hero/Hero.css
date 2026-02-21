@@ -35,17 +35,26 @@
 }
 
 .hero-content-wrapper {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    grid-template-areas:
+        "title image"
+        "details image";
     align-items: center;
-    gap: 50px;
+    gap: 40px;
 }
 
-/* Text Side Styles */
-.hero-text-side {
-    flex: 1;
+/* Layout Containers */
+.hero-title-area {
+    grid-area: title;
     max-width: 600px;
 }
+
+.hero-details-side {
+    grid-area: details;
+    max-width: 600px;
+}
+
 
 .tag-line-wrapper {
     display: flex;
@@ -822,40 +831,52 @@
 /* Responsive */
 @media (max-width: 1024px) {
     .hero-content-wrapper {
+        display: flex;
         flex-direction: column;
         text-align: center;
     }
 
-    .hero-text-side {
+    .hero-title-area {
+        order: 1;
+        margin-bottom: 20px;
+    }
+
+    .hero-image-side {
         order: 2;
-        align-items: center;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .hero-details-side {
+        order: 3;
         display: flex;
         flex-direction: column;
+        align-items: center;
+    }
+
+    .main-image-frame {
+        width: 100%;
+        height: 350px;
+    }
+
+    .hero-reveal-title span {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+        letter-spacing: -1px;
     }
 
     .tag-line-wrapper {
         justify-content: center;
+        margin-bottom: 10px;
     }
 
-    .hero-image-side {
-        order: 1;
-        width: 100%;
-        justify-content: center;
-    }
 
-    .main-image-frame {
-        width: 90%;
-        height: 400px;
-    }
-
-    .floating-info-card {
+    .floating-info-card,
+    .hero-price-tag {
         display: none;
     }
-
-    .hero-thumbnail-previews {
-        right: 0;
-    }
 }
+
 
 @keyframes fadeIn {
     from {
@@ -1320,23 +1341,32 @@
 
 .flyhigh-pricing-grid {
     display: flex;
-    gap: 15px;
-    margin-bottom: 40px;
-    margin-top: 20px;
-    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    margin-top: 15px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 5px;
+}
+
+.flyhigh-pricing-grid::-webkit-scrollbar {
+    display: none;
 }
 
 .fh-price-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    padding: 15px 20px;
-    border-radius: 12px;
+    padding: 10px 15px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    min-width: 120px;
+    min-width: 100px;
+    flex: 1;
     transition: all 0.3s ease;
 }
+
 
 .fh-price-card:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -1354,13 +1384,13 @@
 }
 
 .fh-price {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #ffaa00;
     font-family: 'Outfit', sans-serif;
-    /* Consistent font */
     line-height: 1.2;
 }
+
 
 .fh-detail {
     font-size: 0.7rem;

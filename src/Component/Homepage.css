@@ -7,9 +7,9 @@
     padding-top: 80px;
 }
 
-@media (max-width:480px){
+@media (max-width:480px) {
 
-    .homepage{
-        padding-top: 50px;
+    .homepage {
+        padding-top: 14px;
     }
 }

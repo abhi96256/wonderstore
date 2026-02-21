@@ -106,8 +106,8 @@ function Hero() {
 
       <div className="hero-modern-container">
         <div className="hero-content-wrapper">
-          {/* Text Content Side */}
-          <div className="hero-text-side">
+          {/* Title Area - Positioned first on mobile */}
+          <div className="hero-title-area">
             <div className="tag-line-wrapper">
               <span className="line"></span>
               <span className="tag-text">{slides[activeSlide]?.tag}</span>
@@ -117,40 +117,9 @@ function Hero() {
               <span className="title-top">{slides[activeSlide]?.title}</span>
               <span className="title-bottom">{slides[activeSlide]?.subtitle}</span>
             </h1>
-
-            {slides[activeSlide]?.pricing ? (
-              <div className="flyhigh-pricing-grid">
-                {slides[activeSlide].pricing.map((item, index) => (
-                  <div key={index} className="fh-price-card">
-                    <span className="fh-label">{item.label}</span>
-                    <span className="fh-price">{item.price}</span>
-                    <span className="fh-detail">{item.detail}</span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="hero-description-text">
-                {slides[activeSlide]?.description}
-              </p>
-            )}
-
-            <div className="hero-actions-modern">
-              <button className={`btn-modern-primary ${slides[activeSlide]?.type === 'flyhigh' ? 'btn-flyhigh' : ''} ${slides[activeSlide]?.type === 'paperroll' ? 'btn-paperroll' : ''}`} onClick={handleShopNow}>
-                {slides[activeSlide]?.ctaLabel || "SHOP NOW"}
-                <div className="btn-fill"></div>
-              </button>
-              <button className="btn-modern-text" onClick={handleExplore}>
-                EXPLORE COLLECTION →
-              </button>
-            </div>
-
-            <div className="hero-scroll-indicator">
-              <div className="scroll-line"></div>
-              <span>SCROLL</span>
-            </div>
           </div>
 
-          {/* Image Side - Ultra Premium Design */}
+          {/* Image Side - Positioned after title on mobile */}
           <div className="hero-image-side">
             <div className="main-image-frame">
               {/* Decorative Splash Background */}
@@ -189,6 +158,40 @@ function Hero() {
                   )}
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Details Side - Positioned last on mobile */}
+          <div className="hero-details-side">
+            <div className="hero-actions-modern">
+              <button className={`btn-modern-primary ${slides[activeSlide]?.type === 'flyhigh' ? 'btn-flyhigh' : ''} ${slides[activeSlide]?.type === 'paperroll' ? 'btn-paperroll' : ''}`} onClick={handleShopNow}>
+                {slides[activeSlide]?.ctaLabel || "SHOP NOW"}
+                <div className="btn-fill"></div>
+              </button>
+              <button className="btn-modern-text" onClick={handleExplore}>
+                EXPLORE COLLECTION →
+              </button>
+            </div>
+
+            {slides[activeSlide]?.pricing ? (
+              <div className="flyhigh-pricing-grid">
+                {slides[activeSlide].pricing.map((item, index) => (
+                  <div key={index} className="fh-price-card">
+                    <span className="fh-label">{item.label}</span>
+                    <span className="fh-price">{item.price}</span>
+                    <span className="fh-detail">{item.detail}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="hero-description-text">
+                {slides[activeSlide]?.description}
+              </p>
+            )}
+
+            <div className="hero-scroll-indicator">
+              <div className="scroll-line"></div>
+              <span>SCROLL</span>
             </div>
           </div>
         </div>
