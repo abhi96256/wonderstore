@@ -1,25 +1,34 @@
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
 }
 
 @keyframes glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 5px rgba(26, 26, 26, 0.1);
   }
+
   50% {
     box-shadow: 0 0 15px rgba(26, 26, 26, 0.2);
   }
@@ -29,6 +38,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -38,6 +48,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -45,7 +56,7 @@
 
 .contact-container {
   padding: 60px 0;
-  margin-top: 10%;
+  margin-top: 12%;
   background-color: #f8f8f8;
   min-height: 100vh;
 }
@@ -74,13 +85,17 @@
 .contact-card-content::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255,255,255,0.82);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.82);
   border-radius: 16px;
   z-index: 0;
 }
 
-.contact-form-area, .contact-info-area {
+.contact-form-area,
+.contact-info-area {
   position: relative;
   z-index: 1;
 }
@@ -243,7 +258,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(0,0,0,0.1), rgba(255,255,255,0.1));
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -278,7 +293,7 @@
   border-radius: 12px;
   padding: 32px 18px 24px 18px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -311,7 +326,7 @@
     grid-template-columns: 1fr;
     padding: 30px;
   }
-  
+
   .contact-form-area h1 {
     font-size: 2rem;
   }
@@ -322,6 +337,7 @@
     flex-direction: column;
     gap: 24px;
   }
+
   .contact-details-col {
     min-width: unset;
     width: 100%;
@@ -332,15 +348,15 @@
   .contact-container {
     padding-top: 15%;
   }
-  
+
   .contact-card-content {
     padding: 20px;
   }
-  
+
   .contact-form-area h1 {
     font-size: 1.8rem;
   }
-  
+
   .contact-form-area p {
     font-size: 1rem;
   }

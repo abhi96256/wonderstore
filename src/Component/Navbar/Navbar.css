@@ -170,7 +170,6 @@
     position: relative;
     display: inline-block;
     margin: 0 6px;
-    margin-top: 16px;
 }
 
 .badge {
@@ -385,7 +384,6 @@
 
     .icon-wrapper {
         margin: 0 4px;
-        margin-top: 8px;
         padding: inherit;
     }
 
