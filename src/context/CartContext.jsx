@@ -22,7 +22,7 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const { currentUser } = useAuth();
+  const { user: currentUser } = useAuth();
   const { requireAuth } = useAuthRedirect();
   const [cart, setCart] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);

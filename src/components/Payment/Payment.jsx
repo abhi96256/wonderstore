@@ -5,7 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import "./Payment.css";
 import { createRazorpayOrder, verifyPayment, testRazorpayConnection, createTestOrder } from "../../firebase/functions";
 import { saveSuccessfulPayment, getUser } from "../../firebase/firestore";
-import { collection, addDoc, getDocs, query, where, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, getDoc, query, where, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import AddressForm from "../../Component/AddressManagement/AddressForm";
 
@@ -18,7 +18,7 @@ const SimplePlusIcon = () => (
   <span className="simple-icon plus-icon">+</span>
 );
 
-const Payment = ({ onClose, total, promoCode = '', discount = 0 }) => {
+const Payment = ({ onClose, total, promoCode = '', discount = 0, walletDiscount = 0 }) => {
   const navigate = useNavigate();
   const { cart, getCartTotal, clearCart } = useCart();
   const { user } = useAuth();
@@ -347,6 +347,18 @@ const Payment = ({ onClose, total, promoCode = '', discount = 0 }) => {
               paymentMethod: 'Online'
             });
 
+            // If wallet was used, deduct it
+            if (walletDiscount > 0 && user?.uid) {
+              const userRef = doc(db, 'users', user.uid);
+              const userDoc = await getDoc(userRef);
+              if (userDoc.exists()) {
+                const currentBalance = userDoc.data().walletBalance || 0;
+                await updateDoc(userRef, {
+                  walletBalance: Math.max(0, currentBalance - walletDiscount)
+                });
+              }
+            }
+
             alert('Payment Successful!');
             clearCart();
             navigate(`/payment-success?payment_id=${response.razorpay_payment_id}`);
@@ -418,8 +430,21 @@ const Payment = ({ onClose, total, promoCode = '', discount = 0 }) => {
         originalTotal: total,
         promoCode: promoCode,
         discountApplied: discount,
-        status: 'Pending (COD)'
+        status: 'Pending (COD)',
+        walletDiscount: walletDiscount
       });
+
+      // If wallet was used, deduct it
+      if (walletDiscount > 0 && user?.uid) {
+        const userRef = doc(db, 'users', user.uid);
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+          const currentBalance = userDoc.data().walletBalance || 0;
+          await updateDoc(userRef, {
+            walletBalance: Math.max(0, currentBalance - walletDiscount)
+          });
+        }
+      }
 
       console.log('[PAYMENT] COD Order saved successfully');
 
@@ -653,6 +678,11 @@ const Payment = ({ onClose, total, promoCode = '', discount = 0 }) => {
                   Total Items: {cart.reduce((sum, item) => sum + item.quantity, 0)}
                 </p>
                 <p>Total Amount: ₹{total.toFixed(2)}</p>
+                {walletDiscount > 0 && (
+                  <p className="wallet-discount-text" style={{ color: '#2ed573', fontWeight: '600' }}>
+                    Wallet Discount: -₹{walletDiscount.toFixed(2)}
+                  </p>
+                )}
               </div>
             </div>
 

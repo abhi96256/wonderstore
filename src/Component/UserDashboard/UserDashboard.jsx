@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaUser, FaSignOutAlt, FaCog, FaHistory, FaUserShield, FaMapMarkerAlt, FaShoppingCart } from 'react-icons/fa';
+import { FaUser, FaSignOutAlt, FaCog, FaHistory, FaUserShield, FaMapMarkerAlt, FaShoppingCart, FaShareAlt, FaWallet } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 import './UserDashboard.css';
 
@@ -99,6 +99,10 @@ const UserDashboard = () => {
                 <h4>Welcome, {getUserName()}</h4>
                 <p>{user?.email || currentUser?.email}</p>
                 {isAdmin && <span className="admin-badge">Admin</span>}
+                <div className="user-wallet-brief">
+                  <FaWallet className="wallet-icon-small" />
+                  <span>Wallet: ₹{user?.walletBalance || 0}</span>
+                </div>
               </div>
             </div>
 
@@ -127,6 +131,10 @@ const UserDashboard = () => {
                 <FaShoppingCart className="menu-icon" />
                 <span>Saved Items</span>
               </Link>
+              <Link to="/refer-and-earn" className="menu-item" onClick={() => setIsOpen(false)}>
+                <FaShareAlt className="menu-icon" />
+                <span>Refer & Earn</span>
+              </Link>
               {/* <Link to="/settings" className="menu-item" onClick={() => setIsOpen(false)}>
                 <FaCog className="menu-icon" />
                 <span>Settings</span>
@@ -134,6 +142,10 @@ const UserDashboard = () => {
               <Link to="/wishlist" className="menu-item" onClick={() => setIsOpen(false)}>
                 <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="Wishlist" />
                 <span>Wishlist</span>
+              </Link>
+              <Link to="/redeem-wallet" className="menu-item" onClick={() => setIsOpen(false)}>
+                <FaWallet className="menu-icon" />
+                <span>Transfer to Bank</span>
               </Link>
               {/* <Link to="/notifications" className="menu-item" onClick={() => setIsOpen(false)}>
                 <img src="https://cdn-icons-png.flaticon.com/512/1827/1827392.png" alt="Notifications" />

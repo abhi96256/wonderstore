@@ -1520,3 +1520,187 @@ export const simulateMultipleProductBought = async (productId, count) => {
   }
 };
 
+// REFERRALS
+
+/**
+ * Submit a new referral
+ * @param {Object} referralData - Data about the referral
+ * @returns {Promise<string>} - The ID of the created referral
+ */
+export const submitReferral = async (referralData) => {
+  try {
+    const referralsCollection = collection(db, 'referrals');
+    const referralRef = await addDoc(referralsCollection, {
+      ...referralData,
+      status: 'pending',
+      amount: 0,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    });
+    return referralRef.id;
+  } catch (error) {
+    console.error('Error submitting referral:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get all referrals for admin
+ * @returns {Promise<Array>} - Array of referral objects
+ */
+export const getAllReferrals = async () => {
+  try {
+    const referralsQuery = query(
+      collection(db, 'referrals'),
+      orderBy('createdAt', 'desc')
+    );
+
+    const querySnapshot = await getDocs(referralsQuery);
+    const referrals = [];
+
+    querySnapshot.forEach((doc) => {
+      referrals.push({
+        id: doc.id,
+        ...doc.data()
+      });
+    });
+
+    return referrals;
+  } catch (error) {
+    console.error('Error getting referrals:', error);
+    throw error;
+  }
+};
+
+/**
+ * Update referral status and reward amount
+ * @param {string} referralId - The referral ID
+ * @param {string} status - New status (e.g., 'rewarded', 'rejected')
+ * @param {number} rewardAmount - Amount to reward (if any)
+ * @returns {Promise<void>}
+ */
+export const updateReferralStatus = async (referralId, status, rewardAmount = 0) => {
+  try {
+    const referralRef = doc(db, 'referrals', referralId);
+    await updateDoc(referralRef, {
+      status,
+      amount: rewardAmount,
+      updatedAt: serverTimestamp()
+    });
+  } catch (error) {
+    console.error('Error updating referral status:', error);
+    throw error;
+  }
+};
+
+/**
+ * Add amount to user's wallet/balance
+ * @param {string} userId - The user ID
+ * @param {number} amount - Amount to add
+ * @returns {Promise<void>}
+ */
+export const addUserWalletBalance = async (userId, amount) => {
+  try {
+    const userRef = doc(db, 'users', userId);
+    const userDoc = await getDoc(userRef);
+    
+    if (userDoc.exists()) {
+      const currentBalance = userDoc.data().walletBalance || 0;
+      await updateDoc(userRef, {
+        walletBalance: currentBalance + amount,
+        updatedAt: serverTimestamp()
+      });
+    } else {
+      // Create user document if it doesn't exist (failsafe)
+      await setDoc(userRef, {
+        walletBalance: amount,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      });
+    }
+  } catch (error) {
+    console.error('Error updating user wallet balance:', error);
+    throw error;
+  }
+};
+
+// WITHDRAWALS
+
+/**
+ * Request a withdrawal from wallet
+ */
+export const requestWithdrawal = async (withdrawalData) => {
+  try {
+    const withdrawalRef = await addDoc(collection(db, 'withdrawals'), {
+      ...withdrawalData,
+      status: 'pending',
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    });
+
+    // Deduct from wallet immediately to prevent double spending
+    const userRef = doc(db, 'users', withdrawalData.userId);
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      const currentBalance = userDoc.data().walletBalance || 0;
+      await updateDoc(userRef, {
+        walletBalance: currentBalance - withdrawalData.amount,
+        updatedAt: serverTimestamp()
+      });
+    }
+
+    return withdrawalRef.id;
+  } catch (error) {
+    console.error('Error requesting withdrawal:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get all withdrawals for admin
+ */
+export const getAllWithdrawals = async () => {
+  try {
+    const q = query(collection(db, 'withdrawals'), orderBy('createdAt', 'desc'));
+    const querySnapshot = await getDocs(q);
+    const withdrawals = [];
+    querySnapshot.forEach((doc) => {
+      withdrawals.push({ id: doc.id, ...doc.data() });
+    });
+    return withdrawals;
+  } catch (error) {
+    console.error('Error getting withdrawals:', error);
+    throw error;
+  }
+};
+
+/**
+ * Update withdrawal status
+ */
+export const updateWithdrawalStatus = async (withdrawalId, status, userId, amount) => {
+  try {
+    const withdrawalRef = doc(db, 'withdrawals', withdrawalId);
+    await updateDoc(withdrawalRef, {
+      status,
+      updatedAt: serverTimestamp()
+    });
+
+    // If rejected, refund the wallet
+    if (status === 'rejected') {
+      const userRef = doc(db, 'users', userId);
+      const userDoc = await getDoc(userRef);
+      if (userDoc.exists()) {
+        const currentBalance = userDoc.data().walletBalance || 0;
+        await updateDoc(userRef, {
+          walletBalance: currentBalance + amount,
+          updatedAt: serverTimestamp()
+        });
+      }
+    }
+  } catch (error) {
+    console.error('Error updating withdrawal status:', error);
+    throw error;
+  }
+};
+
+

@@ -10,7 +10,7 @@ import {
   updateProfile,
   sendEmailVerification
 } from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '../firebase/config';
 
 const AuthContext = createContext();
@@ -22,23 +22,54 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        // User is signed in
-        const userDoc = await getDoc(doc(db, 'users', user.uid));
-        const userData = userDoc.exists() ? userDoc.data() : {};
+    let unsubscribeSnapshot = null;
 
-        setCurrentUser({ ...user, ...userData, isAdmin: userData.isAdmin || false });
+    const unsubscribeAuth = onAuthStateChanged(auth, async (authUser) => {
+      if (authUser) {
         setIsAuthenticated(true);
+        
+        // Listen to Firestore user document in real-time
+        unsubscribeSnapshot = onSnapshot(doc(db, 'users', authUser.uid), (userDoc) => {
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            // Create a clean user object combining Auth and Firestore data
+            const enrichedUser = {
+              uid: authUser.uid,
+              email: authUser.email,
+              displayName: authUser.displayName,
+              ...userData,
+              isAdmin: userData.isAdmin || false,
+              walletBalance: userData.walletBalance || 0
+            };
+            setCurrentUser(enrichedUser);
+          } else {
+            setCurrentUser({ 
+              uid: authUser.uid, 
+              email: authUser.email, 
+              isAdmin: false,
+              walletBalance: 0 
+            });
+          }
+          setLoading(false);
+        }, (err) => {
+          console.error("Error listening to user document:", err);
+          setCurrentUser({ uid: authUser.uid, email: authUser.email, isAdmin: false });
+          setLoading(false);
+        });
+
       } else {
         // User is signed out
+        if (unsubscribeSnapshot) unsubscribeSnapshot();
         setCurrentUser(null);
         setIsAuthenticated(false);
+        setLoading(false);
       }
-      setLoading(false);
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribeAuth();
+      if (unsubscribeSnapshot) unsubscribeSnapshot();
+    };
   }, []);
 
   const signup = async (userData) => {

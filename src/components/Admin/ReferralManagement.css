@@ -1,0 +1,172 @@
+.referral-mgmt-container {
+    padding: 30px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    font-size: 1.8rem;
+    color: #2d3436;
+    margin: 0;
+}
+
+.reward-config {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.reward-config input {
+    width: 80px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.referral-table-wrapper {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.referral-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.referral-table th {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 2px solid #eee;
+}
+
+.referral-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-icon {
+    font-size: 1.2rem;
+    color: #b2bec3;
+}
+
+.user-name {
+    font-weight: 600;
+    color: #2d3436;
+}
+
+.user-email {
+    font-size: 0.85rem;
+    color: #636e72;
+}
+
+.referee-info {
+    line-height: 1.4;
+    font-size: 0.95rem;
+}
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.status-badge.pending {
+    background: #fff9db;
+    color: #f08c00;
+}
+
+.status-badge.rewarded {
+    background: #ebfbee;
+    color: #2b8a3e;
+}
+
+.status-badge.rejected {
+    background: #fff5f5;
+    color: #c92a2a;
+}
+
+.reward-info {
+    font-size: 0.8rem;
+    color: #2b8a3e;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.approve-btn, .reject-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.2s;
+}
+
+.approve-btn {
+    background: #2b8a3e;
+    color: white;
+}
+
+.approve-btn:hover {
+    background: #237032;
+}
+
+.reject-btn {
+    background: #c92a2a;
+    color: white;
+}
+
+.reject-btn:hover {
+    background: #a62222;
+}
+
+.action-done {
+    color: #636e72;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.no-data {
+    text-align: center;
+    color: #999;
+    padding: 40px !important;
+}
+
+.admin-loading, .admin-error {
+    text-align: center;
+    padding: 100px;
+    font-size: 1.2rem;
+}
+
+.admin-error {
+    color: #c92a2a;
+}

@@ -10,7 +10,8 @@ import {
   FaShoppingBag,
   FaCheck,
   FaCheckSquare,
-  FaSquare
+  FaSquare,
+  FaWallet
 } from "react-icons/fa";
 import "./Cart.css";
 import Payment from "../Payment/Payment";
@@ -41,6 +42,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const [selectMode, setSelectMode] = useState(false);
   const [promoLoading, setPromoLoading] = useState(false);
+  const [useWallet, setUseWallet] = useState(false);
 
   // Listen for payment success
   useEffect(() => {
@@ -191,7 +193,9 @@ const Cart = () => {
     setShowPayment(true);
   };
 
-  const totalAfterDiscount = promoApplied ? selectedTotal - discount + shipping : selectedTotal + shipping;
+  const walletBalance = user?.walletBalance || 0;
+  const walletDiscountAmount = useWallet ? Math.min(walletBalance, (promoApplied ? selectedTotal - discount + shipping : selectedTotal + shipping)) : 0;
+  const totalAfterDiscount = promoApplied ? selectedTotal - discount + shipping - walletDiscountAmount : selectedTotal + shipping - walletDiscountAmount;
 
   if (cart.length === 0) {
     return (
@@ -380,6 +384,24 @@ const Cart = () => {
             <span>Total:</span>
             <span>₹{totalAfterDiscount.toFixed(2)}</span>
           </div>
+
+          {walletBalance > 0 && (
+            <div className="wallet-usage-section">
+              <label className={`wallet-checkbox ${useWallet ? 'active' : ''}`}>
+                <input 
+                  type="checkbox" 
+                  checked={useWallet} 
+                  onChange={() => setUseWallet(!useWallet)} 
+                />
+                <FaWallet /> Use Wallet Balance (₹{walletBalance})
+              </label>
+              {useWallet && (
+                <div className="wallet-applied-msg">
+                  -₹{walletDiscountAmount.toFixed(2)} applied from wallet
+                </div>
+              )}
+            </div>
+          )}
           <button
             className="checkout-btn"
             onClick={handleCheckout}
@@ -398,6 +420,7 @@ const Cart = () => {
           total={totalAfterDiscount}
           promoCode={promoApplied ? promoCode.trim() : ''}
           discount={promoApplied ? discount : 0}
+          walletDiscount={walletDiscountAmount}
           subtotal={selectedTotal}
           onClose={() => setShowPayment(false)}
         />

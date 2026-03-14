@@ -48,8 +48,11 @@ import SavedCart from './Component/SavedCart/SavedCart.jsx';
 import CartManagement from './components/Admin/CartManagement';
 import WishlistManagement from './components/Admin/WishlistManagement.jsx';
 import TestimonialsManagement from './components/Admin/TestimonialsManagement.jsx';
+import ReferralManagement from './components/Admin/ReferralManagement.jsx';
+import Referral from './components/Referral/Referral.jsx';
+import RedeemWallet from './components/Wallet/RedeemWallet.jsx';
+import WithdrawalManagement from './components/Admin/WithdrawalManagement.jsx';
 import SeedData from './SeedData.jsx';
-
 
 // Layout component with navbar and footer
 const PageLayout = ({ children }) => {
@@ -132,6 +135,8 @@ function App() {
                 <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
                 <Route path="/change-password" element={<PageLayout><ChangePassword /></PageLayout>} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/refer-and-earn" element={<ProtectedRoute><Referral /></ProtectedRoute>} />
+                <Route path="/redeem-wallet" element={<ProtectedRoute><RedeemWallet /></ProtectedRoute>} />
 
                 {/* Admin Routes */}
                 <Route path="/admin" element={
@@ -150,6 +155,8 @@ function App() {
                   <Route path="cart-management" element={<CartManagement />} />
                   <Route path="wishlist-management" element={<WishlistManagement />} />
                   <Route path="testimonials" element={<TestimonialsManagement />} />
+                  <Route path="referrals" element={<ReferralManagement />} />
+                  <Route path="payouts" element={<WithdrawalManagement />} />
                 </Route>
 
                 <Route path="/seed" element={<SeedData />} />

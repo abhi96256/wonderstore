@@ -239,6 +239,14 @@ const AdminDashboard = () => {
             <span className="nav-icon"><FaStar /></span>
             <span className="nav-text">Testimonials</span>
           </NavLink>
+          <NavLink to="/admin/referrals" className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}>
+            <span className="nav-icon"><FaUsers /></span>
+            <span className="nav-text">Referral Management</span>
+          </NavLink>
+          <NavLink to="/admin/payouts" className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}>
+            <span className="nav-icon"><FaWallet /></span>
+            <span className="nav-text">Payout Requests</span>
+          </NavLink>
           <button onClick={handleLogout} className="nav-item logout">
             <span className="nav-icon"><AiOutlineLogout /></span>
             <span className="nav-text">Logout</span>

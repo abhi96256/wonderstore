@@ -186,11 +186,6 @@ const Signup = () => {
   const handlePrev = () => setSliderIndex((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
   const handleNext = () => setSliderIndex((prev) => (prev + 1) % sliderImages.length);
 
-  // Show loading state from auth context
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
-
   return (
     <div className="login-bg-dark">
       <div className="login-card-dark">

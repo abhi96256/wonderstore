@@ -465,7 +465,7 @@ const ProductDetails = () => {
     }
   };
 
-  const handleAddToWishlist = (e) => {
+  const handleAddToWishlist = async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -474,15 +474,20 @@ const ProductDetails = () => {
       return;
     }
 
-    // Check if product is already in wishlist
-    if (isInWishlist(product.id)) {
-      // If already in wishlist, remove it
-      console.log('[ProductDetails] Removing from wishlist:', product);
-      removeFromWishlist(product.id);
-    } else {
-      // If not in wishlist, add it
-      console.log('[ProductDetails] Adding to wishlist:', product);
-      addToWishlist(product);
+    try {
+      // Check if product is already in wishlist
+      if (isInWishlist(product.id)) {
+        // If already in wishlist, remove it
+        console.log('[ProductDetails] Removing from wishlist:', product);
+        await removeFromWishlist(product.id);
+      } else {
+        // If not in wishlist, add it
+        console.log('[ProductDetails] Adding to wishlist:', product);
+        await addToWishlist(product);
+      }
+    } catch (error) {
+      console.error('[ProductDetails] Error updating wishlist:', error);
+      alert('Failed to update wishlist. Please try again.');
     }
   };
 
@@ -538,7 +543,11 @@ const ProductDetails = () => {
         });
         window.dispatchEvent(cartUpdateEvent);
       } else if (action === 'wishlist') {
-        handleAddToWishlist(e);
+        if (isInWishlist(product.id)) {
+          await removeFromWishlist(product.id);
+        } else {
+          await addToWishlist(product);
+        }
       }
     } catch (error) {
       console.error(`Error performing ${action} action:`, error);

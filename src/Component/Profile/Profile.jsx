@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './Profile.css';
-import { FaClipboardList, FaBoxOpen } from 'react-icons/fa';
+import { FaClipboardList, FaBoxOpen, FaWallet, FaShareAlt } from 'react-icons/fa';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -176,6 +176,13 @@ const Profile = () => {
           {/* PAYMENTS Section */}
           <div className="menu-section">
             <div className="section-title">PAYMENTS</div>
+            <div className="menu-item">
+              <FaWallet style={{ marginRight: '10px', fontSize: '18px' }} />
+              <span>Wallet Balance</span>
+              <span className="amount" style={{ marginLeft: 'auto', fontWeight: 'bold', color: '#2b8a3e' }}>
+                ₹{user?.walletBalance || 0}
+              </span>
+            </div>
             <Link to="/gift-cards" className="menu-item">
               Gift Cards <span className="amount">₹0</span>
             </Link>
@@ -190,6 +197,10 @@ const Profile = () => {
           {/* MY STUFF Section */}
           <div className="menu-section">
             <div className="section-title">MY STUFF</div>
+            <Link to="/refer-and-earn" className="menu-item">
+              <FaShareAlt style={{ marginRight: '10px', fontSize: '18px' }} />
+              <span>Refer & Earn</span>
+            </Link>
             <Link to="/coupons" className="menu-item">
               My Coupons
             </Link>
